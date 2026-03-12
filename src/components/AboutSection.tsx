@@ -105,13 +105,13 @@ export default function AboutSection() {
                 qualified and dedicated Faculty members specialized in various
                 fields.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              {/* <p className="text-muted-foreground leading-relaxed">
                 With modern laboratories, experienced faculty, and
                 industry-oriented training, the department encourages students
                 to participate in technical events, workshops, and real-world
                 projects in areas like Embedded Systems, IoT, VLSI, and
                 Communication Technologies.
-              </p>
+              </p> */}
             </div>
             <div className="space-y-7">
               {[

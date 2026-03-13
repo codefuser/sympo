@@ -238,7 +238,6 @@ export default function SymposiumSection() {
                   "2:00 PM – Dum Challanger",
                   "2:30 PM – Anagram",
                   "3:00 PM – Prize Distribution",
-                  "4:00 PM – End Event",
                 ],
               },
             ].map((session) => (

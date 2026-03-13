@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="font-display text-sm font-bold gradient-text tracking-widest">SPARKTRON'26</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Annual National Level Technical Symposium organized by the Department of Electronics & Communication Engineering,
+              National Level Technical Symposium organized by the Department of Electronics & Communication Engineering,
 Thamirabharani Engineering College.
             </p>
           </div>
@@ -27,8 +27,23 @@ Tirunelveli, Tamil Nadu</li>
           <div>
             <p className="font-display text-xs text-primary tracking-widest uppercase mb-4">Follow Us</p>
             <div className="flex gap-4">
-              {[Youtube, Twitter,FacebookIcon ].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-lg bg-muted/50 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors">
+              {[Instagram].map((Icon, i) => (
+                <a key={i} href="https://www.instagram.com/tec_edu_in/" className="w-9 h-9 rounded-lg bg-muted/50 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors">
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+               {[Youtube].map((Icon, i) => (
+                <a key={i} href="https://www.youtube.com/channel/UCQ_0orcCi7qMz0RfKsS7GPQ?view_as=subscriber" className="w-9 h-9 rounded-lg bg-muted/50 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors">
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+               {[Twitter].map((Icon, i) => (
+                <a key={i} href="https://x.com/TEC_ENGG" className="w-9 h-9 rounded-lg bg-muted/50 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors">
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+               {[FacebookIcon ].map((Icon, i) => (
+                <a key={i} href="https://www.facebook.com/ThamirabharaniEngineeringCollege" className="w-9 h-9 rounded-lg bg-muted/50 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors">
                   <Icon className="w-4 h-4" />
                 </a>
               ))}

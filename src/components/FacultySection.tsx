@@ -213,17 +213,16 @@
 // }
 
 /////////////////3--------------------------------------------------------
+import React from "react";
 import principalImg from "@/assets/principal.jpg";
 import hodImg from "@/assets/hod.jpg";
 import coordinatorImg from "@/assets/coordinator.jpg";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
-
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Autoplay, FreeMode } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/free-mode";
 
 const faculty = [
   { name: "Dr. Rajesh Kumar", role: "Principal", img: principalImg },
@@ -237,109 +236,73 @@ const faculty = [
 ];
 
 export default function FacultySection() {
-
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden bg-[#090B11] text-white">
+      
+      {/* Side Blur - Pure Black to #090B11 Fade */}
+      <div className="absolute top-0 left-0 h-full w-40 bg-gradient-to-r from-black via-[#090B11]/90 to-transparent z-40 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 h-full w-40 bg-gradient-to-l from-black via-[#090B11]/90 to-transparent z-40 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 relative">
-
-        {/* Title */}
-
-        <div className="flex justify-between items-center mb-12">
-
-          <h2 className="text-4xl font-bold">
+      <div className="max-w-7xl mx-auto px-4 relative z-30">
+        
+        {/* Centered Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
             College <span className="text-cyan-400">Heads</span>
           </h2>
-
-          <div className="flex gap-3">
-
-            <button className="faculty-prev bg-[#111827] p-3 rounded-xl hover:bg-cyan-500 transition">
-              <ChevronLeft size={20}/>
-            </button>
-
-            <button className="faculty-next bg-[#111827] p-3 rounded-xl hover:bg-cyan-500 transition">
-              <ChevronRight size={20}/>
-            </button>
-
-          </div>
-
+          <div className="mt-4 h-1 w-20 bg-cyan-500 mx-auto rounded-full blur-[0.5px] opacity-50"></div>
         </div>
 
-
-        {/* Edge Fade */}
-
-        <div className="sliderFadeLeft"></div>
-        <div className="sliderFadeRight"></div>
-
-
         <Swiper
-          modules={[Autoplay, Navigation]}
-          navigation={{
-            prevEl: ".faculty-prev",
-            nextEl: ".faculty-next",
-          }}
+          modules={[Autoplay, FreeMode]}
           loop={true}
-          speed={6000}
+          speed={7000} // Continuous speed (Higher = Slower/Smoother)
           spaceBetween={30}
-          slidesPerView={4}
+          slidesPerView={1.2}
+          freeMode={true}
+          allowTouchMove={false} // Click panna slide stop aagama irukka idhu help pannum
           autoplay={{
             delay: 0,
-            disableOnInteraction: false,
+            disableOnInteraction: false, // Click panna stop aagathu
           }}
           breakpoints={{
-            320:{slidesPerView:1.2},
-            640:{slidesPerView:2.2},
-            1024:{slidesPerView:4},
+            640: { slidesPerView: 2.2 },
+            1024: { slidesPerView: 4 },
           }}
+          className="faculty-swiper !ease-linear select-none"
         >
-
-          {faculty.map((person,index)=>(
+          {faculty.map((person, index) => (
             <SwiperSlide key={index}>
-
-              <div className="facultyCard group">
-
-                {/* Image */}
-
-                <div className="relative overflow-hidden h-72">
-
+              <div className="group relative overflow-hidden rounded-2xl bg-[#111827]/40 border border-white/5 transition-all duration-700 hover:border-cyan-500/40">
+                
+                {/* Image Section with Smooth Hover Zoom */}
+                <div className="relative overflow-hidden h-80">
                   <img
-                  src={person.img}
-                  alt={person.name}
-                  className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                    src={person.img}
+                    alt={person.name}
+                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                   />
-
-                  {/* bottom shadow */}
-
-                  <div className="imageOverlay"></div>
-
+                  {/* Deep Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090B11] via-transparent to-transparent opacity-95"></div>
                 </div>
 
-
-                {/* Info */}
-
-                <div className="p-5">
-
-                  <span className="badge">
+                {/* Content Area */}
+                <div className="p-6">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400/80 mb-1">
                     {person.role}
-                  </span>
-
-                  <h3 className="name">
+                  </p>
+                  <h3 className="text-xl font-bold group-hover:text-cyan-300 transition-colors duration-300">
                     {person.name}
                   </h3>
-
-                  <div className="divider"></div>
-
+                  
+                  {/* Subtle hover line animation */}
+                  <div className="mt-4 h-[1px] w-0 bg-cyan-500/60 transition-all duration-700 group-hover:w-full"></div>
                 </div>
-
               </div>
-
             </SwiperSlide>
           ))}
-
         </Swiper>
-
       </div>
-
     </section>
   );
 }

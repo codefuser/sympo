@@ -141,6 +141,10 @@ background:linear-gradient(to left,#020617,transparent);
 transition-timing-function: linear !important;
 }
 
+.text-5xl {
+    font-size: 2rem;
+    line-height: 1;
+}
 /* ---------------------------------------------- */
 @layer utilities {
   .glow-primary {

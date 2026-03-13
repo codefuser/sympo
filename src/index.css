@@ -148,17 +148,8 @@ transition-timing-function: linear !important;
 
 
 @layer utilities {
-  @keyframes move-grid {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(60px); }
-  }
-
-  .animate-grid {
-    animation: move-grid 3s linear infinite;
-  }
-
   .glow-text {
-    text-shadow: 0 0 15px rgba(0, 210, 255, 0.6), 0 0 30px rgba(0, 210, 255, 0.3);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.7), 0 0 30px rgba(0, 210, 255, 0.4);
   }
 
   .gradient-text {
@@ -167,6 +158,13 @@ transition-timing-function: linear !important;
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* Background layout for the section */
+.hero-container {
+  background: radial-gradient(circle at center, #001529 0%, #000814 100%);
+}
+
+
 /* ---------------------------------------------- */
 @layer utilities {
   .glow-primary {

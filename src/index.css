@@ -70,7 +70,78 @@
     font-family: var(--font-display);
   }
 }
+/* -------------------------------------- */
+.facultySlider .swiper-wrapper{
+transition-timing-function: linear !important;
+}
 
+.facultyCard{
+background:#0b1220;
+border-radius:20px;
+overflow:hidden;
+transition:all .4s ease;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.facultyCard:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+
+.badge{
+font-size:11px;
+letter-spacing:1px;
+color:#22d3ee;
+text-transform:uppercase;
+}
+
+.name{
+font-weight:600;
+margin-top:6px;
+font-size:18px;
+}
+
+.divider{
+height:2px;
+width:40px;
+background:#22d3ee;
+margin-top:10px;
+border-radius:10px;
+}
+.imageOverlay{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+height:120px;
+background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+
+.sliderFadeLeft{
+position:absolute;
+top:0;
+bottom:0;
+left:0;
+width:140px;
+z-index:10;
+background:linear-gradient(to right,#020617,transparent);
+}
+
+.sliderFadeRight{
+position:absolute;
+top:0;
+bottom:0;
+right:0;
+width:140px;
+z-index:10;
+background:linear-gradient(to left,#020617,transparent);
+}
+
+.swiper-wrapper{
+transition-timing-function: linear !important;
+}
+
+/* ---------------------------------------------- */
 @layer utilities {
   .glow-primary {
     box-shadow: var(--glow-primary);

@@ -73,7 +73,10 @@ export default function SymposiumSection() {
                 title: "Participants",
                 desc: "500+ from 50+ colleges",
               },
-              { icon: Target, title: "Edition", desc: "10th Annual Symposium" },
+              { 
+                icon: Target, title: "Edition",
+                 desc: "16th Annual Symposium" 
+              },
             ].map((item) => (
               <div key={item.title} className="card-glow rounded-xl p-5">
                 <item.icon className="w-6 h-6 text-accent mb-3" />
@@ -101,16 +104,18 @@ export default function SymposiumSection() {
                   "9:00 AM – Registration & Check-in",
                   "9:30 AM – Inauguration Ceremony",
                   "10:30 AM – Paper Presentation",
-                  "11:30 AM – Circuit Debugging",
+                  "11:30 AM – Mind Blitz",
+                  "12:00 PM – Technical Connection",
                 ],
               },
               {
                 time: "Afternoon Session",
                 events: [
-                  "1:00 PM – Project Expo & Hackathon",
-                  "2:30 PM – Robo Race & Tech Quiz",
-                  "4:00 PM – PCB Design & Group Discussion",
-                  "5:30 PM – Valediction & Prize Ceremony",
+                  "1:00 PM – Lunch Time",
+                  "2:00 PM – Dum Challanger",
+                  "2:30 PM – Anagram",
+                  "3:00 PM – Prize Distribution",
+                  "4:00 PM – End Event",
                 ],
               },
             ].map((session) => (

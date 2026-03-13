@@ -86,7 +86,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
-const MatrixCircuitBackground = () => {
+const ChipCircuitBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -98,91 +98,106 @@ const MatrixCircuitBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    class DataStream {
+    class CircuitLine {
       x: number;
       y: number;
-      history: { x: number; y: number }[];
+      path: { x: number; y: number }[];
+      timer: number;
+      maxLen: number;
       speed: number;
-      maxLength: number;
 
       constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.history = [{ x: this.x, y: this.y }];
-        this.speed = Math.random() * 3 + 2;
-        this.maxLength = Math.floor(Math.random() * 15 + 10);
+        this.path = [];
+        this.timer = 0;
+        this.maxLen = Math.random() * 20 + 10;
+        this.speed = Math.random() * 1.5 + 1;
+        this.reset();
       }
 
       reset() {
-        this.x = Math.random() * width;
-        this.y = -20;
-        this.history = [{ x: this.x, y: this.y }];
-      }
-
-      update() {
-        // Randomly change direction but keep it vertical-ish (Circuit style)
-        if (Math.random() > 0.95) {
-          this.x += Math.random() > 0.5 ? 30 : -30;
+        // Find the SPARKTRON text position
+        const textElement = document.getElementById("sparktron-title");
+        if (textElement) {
+          const rect = textElement.getBoundingClientRect();
+          // Text-oda boundary-la irunthu random-a oru point-ai pick pannuthu
+          this.x = rect.left + Math.random() * rect.width;
+          this.y = rect.top + Math.random() * rect.height;
         } else {
-          this.y += this.speed;
+          this.x = width / 2;
+          this.y = height / 2;
         }
-
-        this.history.push({ x: this.x, y: this.y });
-        if (this.history.length > this.maxLength) {
-          this.history.shift();
-        }
-
-        if (this.y > height) this.reset();
+        
+        this.path = [{ x: this.x, y: this.y }];
+        this.timer = 0;
       }
 
       draw() {
-        if (this.history.length < 2) return;
-
+        if (this.path.length < 2) return;
         ctx!.beginPath();
-        ctx!.lineWidth = 1.5;
-        // Gradient effect for the tail
-        const gradient = ctx!.createLinearGradient(
-          this.history[0].x, this.history[0].y,
-          this.history[this.history.length - 1].x, this.history[this.history.length - 1].y
-        );
-        gradient.addColorStop(0, "transparent");
-        gradient.addColorStop(1, "#00f2ff");
+        ctx!.strokeStyle = "#00f2ff";
+        ctx!.lineWidth = 1.2;
+        ctx!.shadowBlur = 12;
+        ctx!.shadowColor = "#00f2ff";
         
-        ctx!.strokeStyle = gradient;
-        ctx!.moveTo(this.history[0].x, this.history[0].y);
-        for (let i = 1; i < this.history.length; i++) {
-          ctx!.lineTo(this.history[i].x, this.history[i].y);
+        ctx!.moveTo(this.path[0].x, this.path[0].y);
+        for (let i = 1; i < this.path.length; i++) {
+          ctx!.lineTo(this.path[i].x, this.path[i].y);
         }
         ctx!.stroke();
 
-        // Bright head dot
-        const head = this.history[this.history.length - 1];
+        const last = this.path[this.path.length - 1];
+        ctx!.beginPath();
+        ctx!.arc(last.x, last.y, 2, 0, Math.PI * 2);
         ctx!.fillStyle = "#fff";
-        ctx!.shadowBlur = 10;
-        ctx!.shadowColor = "#00f2ff";
-        ctx!.fillRect(head.x - 1, head.y - 1, 3, 3);
+        ctx!.fill();
         ctx!.shadowBlur = 0;
+      }
+
+      update() {
+        this.timer++;
+        const last = this.path[this.path.length - 1];
+        let nextX = last.x;
+        let nextY = last.y;
+
+        if (this.timer % 25 === 0) {
+          if (Math.random() > 0.5) {
+            nextX += (Math.random() > 0.5 ? 60 : -60);
+          } else {
+            nextY += (Math.random() > 0.5 ? 60 : -60);
+          }
+        } else {
+          // Sparktron text-la irunthu veliya spread aaguva logic
+          nextX += (last.x > width / 2 ? this.speed : -this.speed);
+          nextY += (last.y > height / 2 ? this.speed : -this.speed);
+        }
+
+        this.path.push({ x: nextX, y: nextY });
+        if (this.path.length > this.maxLen) this.path.shift();
+        
+        // Screen-ai vittu veliya pona reset pannum
+        if (nextX < 0 || nextX > width || nextY < 0 || nextY > height) this.reset();
       }
     }
 
-    let streams = Array.from({ length: 60 }, () => new DataStream());
+    let lines = Array.from({ length: 50 }, () => new CircuitLine());
 
     const animate = () => {
-      ctx!.fillStyle = "rgba(0, 0, 0, 0.2)"; // Trail effect
+      ctx!.fillStyle = "black";
       ctx!.fillRect(0, 0, width, height);
-
-      streams.forEach((s) => {
-        s.update();
-        s.draw();
-      });
+      
+      lines.forEach(l => { l.update(); l.draw(); });
       requestAnimationFrame(animate);
     };
 
     animate();
+
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      // Reset all lines to new text position on resize
+      lines.forEach(l => l.reset());
     };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -192,66 +207,70 @@ const MatrixCircuitBackground = () => {
 
 export default function HeroSection({ onRegister }: { onRegister?: () => void }) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black font-sans">
-      <MatrixCircuitBackground />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      <ChipCircuitBackground />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-4 w-full">
+      <div className="relative z-10 text-center px-6 w-full max-w-5xl flex flex-col items-center">
         
-        {/* Header Section */}
-        <div className="mb-12 animate-fade-in">
-          <h2 className="text-white text-3xl md:text-5xl font-black tracking-tight uppercase drop-shadow-lg">
+        <div className="mb-10 space-y-2">
+          <h2 className="text-white text-2xl md:text-5xl font-black tracking-tight uppercase">
             Thamirabharani Engineering College
           </h2>
-          <p className="text-cyan-400 text-[10px] md:text-xs tracking-[0.5em] font-mono mt-2">
+          <p className="text-cyan-400 text-xs md:text-sm tracking-[0.4em] font-mono">
             AUTONOMOUS INSTITUTION
           </p>
         </div>
 
-        <p className="text-gray-400 text-[10px] md:text-xs tracking-[0.3em] mb-4 uppercase">
+        <p className="text-gray-400 text-xs tracking-[0.2em] mb-6 uppercase">
           Organized by the Department of ECE
         </p>
 
-        {/* SPARKTRON - Clean and Impactful */}
-        <div className="relative mb-14 group">
-          <h1 className="text-6xl sm:text-8xl md:text-9xl font-black italic tracking-tighter text-white
-                         drop-shadow-[0_0_20px_rgba(0,242,255,0.7)] selection:bg-cyan-500">
-            SPARKTRON<span className="text-cyan-500">'26</span>
-          </h1>
-          <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent mt-2" />
+        <div className="bg-white/5 border border-white/10 px-8 py-2 rounded-sm mb-12">
+           <p className="text-cyan-400 text-[10px] md:text-sm tracking-[0.5em] font-bold">
+             NATIONAL LEVEL TECHNICAL SYMPOSIUM
+           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 w-full max-w-sm sm:max-w-none justify-center">
+        {/* ✅ SPARKTRON Title with ID for the animation to hook into */}
+        <div id="sparktron-title" className="relative mb-16">
+          <h1 className="text-6xl md:text-9xl font-black text-white italic tracking-tighter">
+            SPARKTRON<span className="text-cyan-500 drop-shadow-[0_0_20px_rgba(0,242,255,0.8)]">'26</span>
+          </h1>
+          <div className="absolute -bottom-4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-8 w-full justify-center items-center">
           <button
             onClick={onRegister}
-            className="px-12 py-4 bg-cyan-500 text-black font-black tracking-widest text-xs hover:scale-105 transition-transform"
+            className="group relative px-14 py-4 bg-cyan-500 rounded-sm transition-all duration-300 hover:scale-105"
           >
-            REGISTER NOW
+            <span className="relative z-10 text-black font-black tracking-widest text-xs">
+              REGISTER NOW
+            </span>
           </button>
+
           <a
             href="#events"
-            className="px-12 py-4 border-2 border-cyan-500 text-cyan-400 font-black tracking-widest text-xs hover:bg-cyan-500/10 transition-colors text-center"
+            className="px-14 py-4 border-2 border-cyan-500 text-cyan-500 font-bold tracking-widest text-xs hover:bg-cyan-500/10 transition-all rounded-sm"
           >
             VIEW EVENTS
           </a>
         </div>
 
-        {/* Stats Section */}
-        <div className="mt-20 flex gap-12 md:gap-24 items-center border-t border-white/10 pt-10">
+        <div className="mt-20 flex gap-16 items-center">
            <div className="text-center">
-              <p className="text-white text-4xl md:text-5xl font-black italic">05</p>
-              <p className="text-cyan-500/60 text-[10px] tracking-widest uppercase mt-1">Events</p>
+              <p className="text-white text-5xl font-black italic">05</p>
+              <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-2">Events</p>
            </div>
-           <div className="h-12 w-[1px] bg-gray-800" />
+           <div className="h-16 w-[1px] bg-gray-800" />
            <div className="text-center">
-              <p className="text-white text-4xl md:text-5xl font-black italic">₹10K+</p>
-              <p className="text-cyan-500/60 text-[10px] tracking-widest uppercase mt-1">Prizes</p>
+              <p className="text-white text-5xl font-black italic">₹10K+</p>
+              <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-2">Prizes</p>
            </div>
         </div>
       </div>
       
-      {/* Edge Vignette */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.8)_100%)]" />
+      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_200px_rgba(0,0,0,1)]" />
     </section>
   );
 }

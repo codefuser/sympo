@@ -86,8 +86,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
-// --- Background Animation Component ---
-const CircuitBackground = () => {
+const MatrixCircuitBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -99,167 +98,160 @@ const CircuitBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    class Trace {
+    class DataStream {
       x: number;
       y: number;
-      dx: number;
-      dy: number;
-      length: number;
-      currentLength: number;
-      opacity: number;
+      history: { x: number; y: number }[];
+      speed: number;
+      maxLength: number;
 
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        // Circuit style: only 90-degree movements
-        const directions = [[2, 0], [-2, 0], [0, 2], [0, -2]];
-        const dir = directions[Math.floor(Math.random() * directions.length)];
-        this.dx = dir[0];
-        this.dy = dir[1];
-        this.length = Math.random() * 100 + 50;
-        this.currentLength = 0;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.history = [{ x: this.x, y: this.y }];
+        this.speed = Math.random() * 3 + 2;
+        this.maxLength = Math.floor(Math.random() * 15 + 10);
       }
 
-      draw() {
-        if (!ctx) return;
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(0, 210, 255, ${this.opacity})`;
-        ctx.lineWidth = 1;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#00d2ff";
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + this.dx * (this.currentLength / 2), this.y + this.dy * (this.currentLength / 2));
-        ctx.stroke();
-
-        // Start node (Small square like a chip pin)
-        ctx.fillStyle = "#00d2ff";
-        ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3);
+      reset() {
+        this.x = Math.random() * width;
+        this.y = -20;
+        this.history = [{ x: this.x, y: this.y }];
       }
 
       update() {
-        this.currentLength++;
-        if (this.currentLength > this.length) {
-          this.x = Math.random() * width;
-          this.y = Math.random() * height;
-          this.currentLength = 0;
-          const directions = [[2, 0], [-2, 0], [0, 2], [0, -2]];
-          const dir = directions[Math.floor(Math.random() * directions.length)];
-          this.dx = dir[0];
-          this.dy = dir[1];
+        // Randomly change direction but keep it vertical-ish (Circuit style)
+        if (Math.random() > 0.95) {
+          this.x += Math.random() > 0.5 ? 30 : -30;
+        } else {
+          this.y += this.speed;
         }
+
+        this.history.push({ x: this.x, y: this.y });
+        if (this.history.length > this.maxLength) {
+          this.history.shift();
+        }
+
+        if (this.y > height) this.reset();
+      }
+
+      draw() {
+        if (this.history.length < 2) return;
+
+        ctx!.beginPath();
+        ctx!.lineWidth = 1.5;
+        // Gradient effect for the tail
+        const gradient = ctx!.createLinearGradient(
+          this.history[0].x, this.history[0].y,
+          this.history[this.history.length - 1].x, this.history[this.history.length - 1].y
+        );
+        gradient.addColorStop(0, "transparent");
+        gradient.addColorStop(1, "#00f2ff");
+        
+        ctx!.strokeStyle = gradient;
+        ctx!.moveTo(this.history[0].x, this.history[0].y);
+        for (let i = 1; i < this.history.length; i++) {
+          ctx!.lineTo(this.history[i].x, this.history[i].y);
+        }
+        ctx!.stroke();
+
+        // Bright head dot
+        const head = this.history[this.history.length - 1];
+        ctx!.fillStyle = "#fff";
+        ctx!.shadowBlur = 10;
+        ctx!.shadowColor = "#00f2ff";
+        ctx!.fillRect(head.x - 1, head.y - 1, 3, 3);
+        ctx!.shadowBlur = 0;
       }
     }
 
-    const traces = Array.from({ length: 50 }, () => new Trace());
+    let streams = Array.from({ length: 60 }, () => new DataStream());
 
     const animate = () => {
-      ctx.fillStyle = "rgba(0, 8, 20, 0.15)"; // Trail effect
-      ctx.fillRect(0, 0, width, height);
+      ctx!.fillStyle = "rgba(0, 0, 0, 0.2)"; // Trail effect
+      ctx!.fillRect(0, 0, width, height);
 
-      traces.forEach((t) => {
-        t.update();
-        t.draw();
+      streams.forEach((s) => {
+        s.update();
+        s.draw();
       });
       requestAnimationFrame(animate);
     };
 
     animate();
-
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0" />;
+  return <canvas ref={canvasRef} className="absolute inset-0 z-0 bg-black" />;
 };
 
-// --- Main Hero Section ---
-interface HeroSectionProps {
-  onRegister?: () => void;
-}
-
-export default function HeroSection({ onRegister }: HeroSectionProps) {
+export default function HeroSection({ onRegister }: { onRegister?: () => void }) {
   return (
-    <section id="home" className="hero-container relative min-h-screen flex items-center justify-center overflow-hidden">
-      
-      {/* Code-based Electronic Background */}
-      <CircuitBackground />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black font-sans">
+      <MatrixCircuitBackground />
 
-      {/* Grid Overlay for depth */}
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(#00d2ff 1px, transparent 1px), linear-gradient(90deg, #00d2ff 1px, transparent 1px)`,
-          backgroundSize: '100px 100px'
-        }}
-      />
-
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        <p className="font-display text-xs tracking-[0.4em] text-cyan-400 mb-6 uppercase font-bold">
-          Department of Electronics & Communication Engineering
-        </p>
+      <div className="relative z-10 flex flex-col items-center text-center px-4 w-full">
         
-        <h1 className="font-display text-5xl md:text-8xl font-black tracking-tight mb-2 glow-text text-white">
-          SPARKTRON'26
-        </h1>
-        
-        <p className="font-display text-xl md:text-3xl font-semibold gradient-text mb-6 tracking-widest">
-          2026
-        </p>
-        
-        <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
-          A National Level Technical Symposium <br />
-          <span className="text-white font-semibold">Thamirabharani Engineering College</span>
-        </p>
-
-        <div className="flex items-center justify-center gap-8 text-sm text-gray-400 mb-12">
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_10px_#00d2ff]" />
-            March 24, 2026
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-600 shadow-[0_0_10px_#2563eb]" />
-            Department of ECE
-          </span>
+        {/* Header Section */}
+        <div className="mb-12 animate-fade-in">
+          <h2 className="text-white text-3xl md:text-5xl font-black tracking-tight uppercase drop-shadow-lg">
+            Thamirabharani Engineering College
+          </h2>
+          <p className="text-cyan-400 text-[10px] md:text-xs tracking-[0.5em] font-mono mt-2">
+            AUTONOMOUS INSTITUTION
+          </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <p className="text-gray-400 text-[10px] md:text-xs tracking-[0.3em] mb-4 uppercase">
+          Organized by the Department of ECE
+        </p>
+
+        {/* SPARKTRON - Clean and Impactful */}
+        <div className="relative mb-14 group">
+          <h1 className="text-6xl sm:text-8xl md:text-9xl font-black italic tracking-tighter text-white
+                         drop-shadow-[0_0_20px_rgba(0,242,255,0.7)] selection:bg-cyan-500">
+            SPARKTRON<span className="text-cyan-500">'26</span>
+          </h1>
+          <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent mt-2" />
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 w-full max-w-sm sm:max-w-none justify-center">
           <button
             onClick={onRegister}
-            className="group relative px-10 py-4 bg-cyan-600 text-white font-bold tracking-widest text-sm transition-all hover:scale-105"
+            className="px-12 py-4 bg-cyan-500 text-black font-black tracking-widest text-xs hover:scale-105 transition-transform"
           >
-            <span className="relative z-10">REGISTER NOW</span>
-            <div className="absolute inset-0 bg-cyan-400 blur-lg opacity-20 group-hover:opacity-50 transition-opacity" />
+            REGISTER NOW
           </button>
-          
           <a
             href="#events"
-            className="px-10 py-4 border border-cyan-500/50 text-cyan-400 font-bold tracking-widest text-sm hover:bg-cyan-500/10 transition-all"
+            className="px-12 py-4 border-2 border-cyan-500 text-cyan-400 font-black tracking-widest text-xs hover:bg-cyan-500/10 transition-colors text-center"
           >
             VIEW EVENTS
           </a>
         </div>
 
-        {/* STATS */}
-        <div className="mt-24 grid grid-cols-2 gap-16 max-w-sm mx-auto border-t border-white/10 pt-8">
-          <div className="text-center">
-            <p className="text-3xl font-black text-white glow-text">5</p>
-            <p className="text-[10px] text-gray-500 tracking-widest uppercase mt-1">Events</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-black text-white glow-text">₹10K+</p>
-            <p className="text-[10px] text-gray-500 tracking-widest uppercase mt-1">Cash Prize</p>
-          </div>
+        {/* Stats Section */}
+        <div className="mt-20 flex gap-12 md:gap-24 items-center border-t border-white/10 pt-10">
+           <div className="text-center">
+              <p className="text-white text-4xl md:text-5xl font-black italic">05</p>
+              <p className="text-cyan-500/60 text-[10px] tracking-widest uppercase mt-1">Events</p>
+           </div>
+           <div className="h-12 w-[1px] bg-gray-800" />
+           <div className="text-center">
+              <p className="text-white text-4xl md:text-5xl font-black italic">₹10K+</p>
+              <p className="text-cyan-500/60 text-[10px] tracking-widest uppercase mt-1">Prizes</p>
+           </div>
         </div>
       </div>
-
-      {/* Bottom fade for smooth transition to next section */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#000814] to-transparent" />
+      
+      {/* Edge Vignette */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.8)_100%)]" />
     </section>
   );
 }

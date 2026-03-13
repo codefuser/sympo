@@ -12,7 +12,7 @@ export default function HeroSection({ onRegister }: HeroSectionProps) {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
-      <div className="absolute inset-0 bg-background/70" />
+      <div className="absolute inset-0 bg-background/30" />
       {/* Grid overlay */}
       <div
         className="absolute inset-0 opacity-10"

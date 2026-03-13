@@ -99,34 +99,55 @@ const ChipCircuitBackground = () => {
     let height = (canvas.height = window.innerHeight);
 
     class CircuitLine {
-      x: number;
-      y: number;
-      path: { x: number; y: number }[];
-      timer: number;
+      x: number = 0;
+      y: number = 0;
+      path: { x: number; y: number }[] = [];
+      timer: number = 0;
       maxLen: number;
       speed: number;
+      initialDir: "UP" | "DOWN" | "LEFT" | "RIGHT" = "UP";
 
       constructor() {
-        this.path = [];
-        this.timer = 0;
-        this.maxLen = Math.random() * 20 + 10;
-        this.speed = Math.random() * 1.5 + 1;
+        this.maxLen = Math.random() * 25 + 15;
+        this.speed = Math.random() * 2 + 1.5;
         this.reset();
       }
 
       reset() {
-        // Find the SPARKTRON text position
         const textElement = document.getElementById("sparktron-title");
         if (textElement) {
           const rect = textElement.getBoundingClientRect();
-          // Text-oda boundary-la irunthu random-a oru point-ai pick pannuthu
-          this.x = rect.left + Math.random() * rect.width;
-          this.y = rect.top + Math.random() * rect.height;
+          
+          // 0: Top, 1: Bottom, 2: Left, 3: Right
+          const side = Math.floor(Math.random() * 4);
+
+          switch (side) {
+            case 0: // Top edge -> Moves Up
+              this.x = rect.left + Math.random() * rect.width;
+              this.y = rect.top;
+              this.initialDir = "UP";
+              break;
+            case 1: // Bottom edge -> Moves Down
+              this.x = rect.left + Math.random() * rect.width;
+              this.y = rect.bottom;
+              this.initialDir = "DOWN";
+              break;
+            case 2: // Left edge -> Moves Left
+              this.x = rect.left;
+              this.y = rect.top + Math.random() * rect.height;
+              this.initialDir = "LEFT";
+              break;
+            case 3: // Right edge -> Moves Right
+              this.x = rect.right;
+              this.y = rect.top + Math.random() * rect.height;
+              this.initialDir = "RIGHT";
+              break;
+          }
         } else {
           this.x = width / 2;
           this.y = height / 2;
         }
-        
+
         this.path = [{ x: this.x, y: this.y }];
         this.timer = 0;
       }
@@ -135,16 +156,17 @@ const ChipCircuitBackground = () => {
         if (this.path.length < 2) return;
         ctx!.beginPath();
         ctx!.strokeStyle = "#00f2ff";
-        ctx!.lineWidth = 1.2;
-        ctx!.shadowBlur = 12;
+        ctx!.lineWidth = 1.5;
+        ctx!.shadowBlur = 15;
         ctx!.shadowColor = "#00f2ff";
-        
+
         ctx!.moveTo(this.path[0].x, this.path[0].y);
         for (let i = 1; i < this.path.length; i++) {
           ctx!.lineTo(this.path[i].x, this.path[i].y);
         }
         ctx!.stroke();
 
+        // End point glow circle
         const last = this.path[this.path.length - 1];
         ctx!.beginPath();
         ctx!.arc(last.x, last.y, 2, 0, Math.PI * 2);
@@ -159,33 +181,45 @@ const ChipCircuitBackground = () => {
         let nextX = last.x;
         let nextY = last.y;
 
-        if (this.timer % 25 === 0) {
+        // Forced initial movement AWAY from the text
+        if (this.timer < 10) {
+          if (this.initialDir === "UP") nextY -= this.speed;
+          if (this.initialDir === "DOWN") nextY += this.speed;
+          if (this.initialDir === "LEFT") nextX -= this.speed;
+          if (this.initialDir === "RIGHT") nextX += this.speed;
+        } 
+        // Then start making random circuit-like turns
+        else if (this.timer % 20 === 0) {
           if (Math.random() > 0.5) {
-            nextX += (Math.random() > 0.5 ? 60 : -60);
+            nextX += (Math.random() > 0.5 ? 50 : -50);
           } else {
-            nextY += (Math.random() > 0.5 ? 60 : -60);
+            nextY += (Math.random() > 0.5 ? 50 : -50);
           }
         } else {
-          // Sparktron text-la irunthu veliya spread aaguva logic
+          // General drift towards screen edges
           nextX += (last.x > width / 2 ? this.speed : -this.speed);
           nextY += (last.y > height / 2 ? this.speed : -this.speed);
         }
 
         this.path.push({ x: nextX, y: nextY });
         if (this.path.length > this.maxLen) this.path.shift();
-        
-        // Screen-ai vittu veliya pona reset pannum
-        if (nextX < 0 || nextX > width || nextY < 0 || nextY > height) this.reset();
+
+        if (nextX < 0 || nextX > width || nextY < 0 || nextY > height) {
+          this.reset();
+        }
       }
     }
 
-    let lines = Array.from({ length: 50 }, () => new CircuitLine());
+    let lines = Array.from({ length: 80 }, () => new CircuitLine());
 
     const animate = () => {
-      ctx!.fillStyle = "black";
+      ctx!.fillStyle = "rgba(0, 0, 0, 0.15)"; // Slight trail effect
       ctx!.fillRect(0, 0, width, height);
-      
-      lines.forEach(l => { l.update(); l.draw(); });
+
+      lines.forEach((l) => {
+        l.update();
+        l.draw();
+      });
       requestAnimationFrame(animate);
     };
 
@@ -194,8 +228,7 @@ const ChipCircuitBackground = () => {
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      // Reset all lines to new text position on resize
-      lines.forEach(l => l.reset());
+      lines.forEach((l) => l.reset());
     };
 
     window.addEventListener("resize", handleResize);
@@ -211,7 +244,6 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
       <ChipCircuitBackground />
 
       <div className="relative z-10 text-center px-6 w-full max-w-5xl flex flex-col items-center">
-        
         <div className="mb-10 space-y-2">
           <h2 className="text-white text-2xl md:text-5xl font-black tracking-tight uppercase">
             Thamirabharani Engineering College
@@ -226,13 +258,13 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
         </p>
 
         <div className="bg-white/5 border border-white/10 px-8 py-2 rounded-sm mb-12">
-           <p className="text-cyan-400 text-[10px] md:text-sm tracking-[0.5em] font-bold">
-             NATIONAL LEVEL TECHNICAL SYMPOSIUM
-           </p>
+          <p className="text-cyan-400 text-[10px] md:text-sm tracking-[0.5em] font-bold">
+            NATIONAL LEVEL TECHNICAL SYMPOSIUM
+          </p>
         </div>
 
-        {/* ✅ SPARKTRON Title with ID for the animation to hook into */}
-        <div id="sparktron-title" className="relative mb-16">
+        {/* ✅ SPARKTRON Title with logic-driven boundaries */}
+        <div id="sparktron-title" className="relative mb-16 px-4 py-2">
           <h1 className="text-6xl md:text-9xl font-black text-white italic tracking-tighter">
             SPARKTRON<span className="text-cyan-500 drop-shadow-[0_0_20px_rgba(0,242,255,0.8)]">'26</span>
           </h1>
@@ -258,18 +290,18 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
         </div>
 
         <div className="mt-20 flex gap-16 items-center">
-           <div className="text-center">
-              <p className="text-white text-5xl font-black italic">05</p>
-              <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-2">Events</p>
-           </div>
-           <div className="h-16 w-[1px] bg-gray-800" />
-           <div className="text-center">
-              <p className="text-white text-5xl font-black italic">₹10K+</p>
-              <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-2">Prizes</p>
-           </div>
+          <div className="text-center">
+            <p className="text-white text-5xl font-black italic">05</p>
+            <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-2">Events</p>
+          </div>
+          <div className="h-16 w-[1px] bg-gray-800" />
+          <div className="text-center">
+            <p className="text-white text-5xl font-black italic">₹10K+</p>
+            <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-2">Prizes</p>
+          </div>
         </div>
       </div>
-      
+
       <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_200px_rgba(0,0,0,1)]" />
     </section>
   );

@@ -145,6 +145,28 @@ transition-timing-function: linear !important;
     font-size: 2rem;
     line-height: 1;
 }
+
+
+@layer utilities {
+  @keyframes move-grid {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  .animate-grid {
+    animation: move-grid 3s linear infinite;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.6), 0 0 30px rgba(0, 210, 255, 0.3);
+  }
+
+  .gradient-text {
+    background: linear-gradient(to right, #00d2ff, #3a7bd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
 /* ---------------------------------------------- */
 @layer utilities {
   .glow-primary {

@@ -217,7 +217,7 @@ import React from "react";
 import principalImg from "@/assets/principal.jpg";
 import hodImg from "@/assets/hod.jpg";
 import coordinatorImg from "@/assets/coordinator.jpg";
-
+import Payment from "@/assets/PaymentQR.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 

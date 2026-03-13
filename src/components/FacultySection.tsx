@@ -217,12 +217,6 @@ import React from "react";
 import principalImg from "@/assets/principal.jpg";
 import hodImg from "@/assets/hod.jpg";
 import coordinatorImg from "@/assets/coordinator.jpg";
-import Payment from "@/assets/PaymentQR.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/free-mode";
 
 const faculty = [
   { name: "Dr. Rajesh Kumar", role: "Principal", img: principalImg },
@@ -235,17 +229,36 @@ const faculty = [
   { name: "Ms. Divya", role: "Assistant Professor", img: coordinatorImg },
 ];
 
+// Double the faculty array for seamless infinite loop
+const doubleFaculty = [...faculty, ...faculty];
+
 export default function FacultySection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-[#090B11] text-white">
+    // ID "faculty" inge add panni irukaen, Navbar-oda href kooda match aagum
+    <section id="faculty" className="py-24 relative overflow-hidden bg-[#090B11] text-white scroll-mt-20">
       
-      {/* Side Blur - Pure Black to #090B11 Fade */}
+      {/* Animation Styles */}
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .scrolling-wrapper {
+          display: flex;
+          width: fit-content;
+          animation: scroll 30s linear infinite;
+        }
+        .scrolling-wrapper:active {
+          animation-play-state: running !important;
+        }
+      `}</style>
+
+      {/* Side Blurs ... (rest of your code) */}
       <div className="absolute top-0 left-0 h-full w-40 bg-gradient-to-r from-black via-[#090B11]/90 to-transparent z-40 pointer-events-none"></div>
       <div className="absolute top-0 right-0 h-full w-40 bg-gradient-to-l from-black via-[#090B11]/90 to-transparent z-40 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-30">
-        
-        {/* Centered Title */}
+      <div className="max-w-7xl mx-auto px-4 relative z-30 overflow-hidden">
+        {/* Title */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
             College <span className="text-cyan-400">Heads</span>
@@ -253,55 +266,26 @@ export default function FacultySection() {
           <div className="mt-4 h-1 w-20 bg-cyan-500 mx-auto rounded-full blur-[0.5px] opacity-50"></div>
         </div>
 
-        <Swiper
-          modules={[Autoplay, FreeMode]}
-          loop={true}
-          speed={7000} // Continuous speed (Higher = Slower/Smoother)
-          spaceBetween={30}
-          slidesPerView={1.2}
-          freeMode={true}
-          allowTouchMove={false} // Click panna slide stop aagama irukka idhu help pannum
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false, // Click panna stop aagathu
-          }}
-          breakpoints={{
-            640: { slidesPerView: 2.2 },
-            1024: { slidesPerView: 4 },
-          }}
-          className="faculty-swiper !ease-linear select-none"
-        >
-          {faculty.map((person, index) => (
-            <SwiperSlide key={index}>
-              <div className="group relative overflow-hidden rounded-2xl bg-[#111827]/40 border border-white/5 transition-all duration-700 hover:border-cyan-500/40">
-                
-                {/* Image Section with Smooth Hover Zoom */}
-                <div className="relative overflow-hidden h-80">
-                  <img
-                    src={person.img}
-                    alt={person.name}
-                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
-                  />
-                  {/* Deep Vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090B11] via-transparent to-transparent opacity-95"></div>
-                </div>
-
-                {/* Content Area */}
-                <div className="p-6">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400/80 mb-1">
-                    {person.role}
-                  </p>
-                  <h3 className="text-xl font-bold group-hover:text-cyan-300 transition-colors duration-300">
-                    {person.name}
-                  </h3>
-                  
-                  {/* Subtle hover line animation */}
-                  <div className="mt-4 h-[1px] w-0 bg-cyan-500/60 transition-all duration-700 group-hover:w-full"></div>
-                </div>
+        {/* Custom Scrolling Container */}
+        <div className="scrolling-wrapper gap-8">
+          {doubleFaculty.map((person, index) => (
+            <div 
+              key={index} 
+              className="flex-shrink-0 w-72 group relative overflow-hidden rounded-2xl bg-[#111827]/40 border border-white/5 transition-all duration-700 hover:border-cyan-500/40"
+            >
+              {/* Image & Content ... */}
+              <div className="relative overflow-hidden h-80">
+                <img src={person.img} alt={person.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090B11] via-transparent to-transparent opacity-95"></div>
               </div>
-            </SwiperSlide>
+              <div className="p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400/80 mb-1">{person.role}</p>
+                <h3 className="text-xl font-bold group-hover:text-cyan-300 transition-colors duration-300">{person.name}</h3>
+                <div className="mt-4 h-[1px] w-0 bg-cyan-500/60 transition-all duration-700 group-hover:w-full"></div>
+              </div>
+            </div>
           ))}
-        </Swiper>
+        </div>
       </div>
     </section>
   );

@@ -201,7 +201,7 @@ const events = [
   },
   {
     icon: Users,
-    name: "Dum challanger",
+    name: "Dumb challanger",
     category: "Non-Technical",
     desc: "A fun game where participants act out words without speaking while teammates guess the correct answer.",
     coordinator: {

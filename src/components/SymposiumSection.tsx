@@ -235,7 +235,7 @@ export default function SymposiumSection() {
                 time: "Afternoon Session",
                 events: [
                   "1:00 PM – Lunch Time",
-                  "2:00 PM – Dum Challanger",
+                  "2:00 PM – Dumb Challanger",
                   "2:30 PM – Anagram",
                   "3:00 PM – Prize Distribution",
                 ],

@@ -38,7 +38,7 @@ export default function RegistrationSection() {
               frameBorder="0"
               marginHeight={0}
               marginWidth={0}
-              title="FUTRONIX'26 Registration Form"
+              title="SPARKTRON'26 Registration Form"
               className="w-full"
             >
               Loading…

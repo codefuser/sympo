@@ -48,7 +48,7 @@ const events = [
     category: "Technical",
     desc: "testing your IQ level and increase your technical knowledge",
     prize: "₹2,000",
-    team: "1-2 members",
+    team: "1 member",
   },
   // {
   //   icon: HelpCircle,
@@ -64,7 +64,7 @@ const events = [
     category: "Technical",
     desc: "connect the technical puzzles to increase our logical thinking ",
     prize: "₹2,000",
-    team: "1-2 members",
+    team: "1 member",
   },
   {
     icon: Users,
@@ -78,7 +78,7 @@ const events = [
     name: "Anagram",
     category: "Non-Technical",
     desc: "Participants rearrange scrambled letters to form meaningful words within a given time.",
-    team: "1-2 members",
+    team: "1 members",
   },
 ];
 

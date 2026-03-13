@@ -15,7 +15,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
         <div className="sticky top-0 z-10 bg-background border-b border-border px-6 py-4 flex items-center justify-between">
           <div>
             <DialogTitle className="font-display text-base font-bold gradient-text tracking-widest">
-              REGISTER — FUTRONIX'26
+              REGISTER — SPARKTRON'26
             </DialogTitle>
             <p className="text-xs text-muted-foreground mt-0.5">Fill in the form below to secure your spot</p>
           </div>
@@ -83,7 +83,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                title="FUTRONIX'26 Registration Form"
+                title="SPARKTRON'26 Registration Form"
                 className="w-full"
               >
                 Loading…

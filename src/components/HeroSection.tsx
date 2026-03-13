@@ -28,7 +28,7 @@ export default function HeroSection({ onRegister }: HeroSectionProps) {
           Department of Electronics & Communication Engineering
         </p>
         <h1 className="font-display text-5xl md:text-8xl font-black tracking-tight mb-2 glow-text text-primary">
-          FUTRONIX'26
+          SPARKTRON'26
         </h1>
         <p className="font-display text-xl md:text-3xl font-semibold gradient-text mb-2 tracking-widest">
           2026

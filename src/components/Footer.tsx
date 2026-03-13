@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-primary" />
-              <span className="font-display text-sm font-bold gradient-text tracking-widest">FUTRONIX'26</span>
+              <span className="font-display text-sm font-bold gradient-text tracking-widest">SPARKTRON'26</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Annual National Level Technical Symposium organized by the Department of Electronics & Communication Engineering,
@@ -37,7 +37,7 @@ Tirunelveli, Tamil Nadu</li>
         </div>
         <div className="section-divider mb-6" />
         <p className="text-center text-xs text-muted-foreground">
-          © 2026 FUTRONIX'26 — Dept. of ECE, Thamirabharani Engineering College. All rights reserved.
+          © 2026 SPARKTRON'26 — Dept. of ECE, Thamirabharani Engineering College. All rights reserved.
         </p>
       </div>
     </footer>

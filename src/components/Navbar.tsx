@@ -32,7 +32,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <a href="#home" className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-primary" />
-            <span className="font-display text-sm font-bold gradient-text tracking-widest">FUTRONIX'26</span>
+            <span className="font-display text-sm font-bold gradient-text tracking-widest">SPARKTRON'26</span>
           </a>
           <ul className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (

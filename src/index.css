@@ -177,6 +177,9 @@ html {
 .ece-glow {
   animation: eceGlow 1.6s infinite ease-in-out;
 }
+.backdrop-blur-lg {
+    width: 205px;
+}
 /* ---------------------------------------------- */
 @layer utilities {
   .glow-primary {

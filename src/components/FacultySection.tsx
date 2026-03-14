@@ -229,77 +229,91 @@ const associationMembers = [
   { name: "Karthik", role: "Executive Member" },
 ];
 
-export default function FacultySection() {
+function Card({ committee, name, role }) {
   return (
-    <section
-      id="faculty"
-      className="py-24 bg-[#090B11] text-white relative overflow-hidden"
-    >
-      {/* Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold">
-          Symposium <span className="text-cyan-400">Team</span>
-        </h2>
+    <div className="relative w-full max-w-[360px] mx-auto group">
 
-        <div className="mt-4 h-1 w-24 bg-cyan-500 mx-auto rounded-full blur-[1px] opacity-60"></div>
+      {/* AREA1 */}
+      <div
+        className="relative backdrop-blur-xl bg-white/5 border border-white/10 text-center p-6 pb-16 shadow-lg"
+        style={{
+          clipPath:
+            "polygon(0 0,100% 0,100% 75%,60% 75%,50% 90%,0 90%)"
+        }}
+      >
+        <p className="text-xs tracking-widest text-cyan-300 mb-2 uppercase">
+          {committee}
+        </p>
+
+        <h3 className="text-lg font-semibold text-white">
+          {name}
+        </h3>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 space-y-16">
+      {/* AREA2 */}
+      <div
+        className="absolute bottom-0 right-0 backdrop-blur-lg bg-cyan-500/20 border border-cyan-400/20 px-6 py-2 text-sm text-cyan-200"
+        style={{
+          clipPath:
+            "polygon(10% 0,100% 0,100% 100%,0 100%)"
+        }}
+      >
+        {role}
+      </div>
 
-        {/* Organizing Committee */}
-        <div>
-          <h3 className="text-2xl font-bold text-center mb-10 text-cyan-300">
-            Organizing Committee
-          </h3>
+      {/* glow */}
+      <div className="absolute inset-0 bg-cyan-800/10 blur-xl opacity-0 group-hover:opacity-100 transition"></div>
 
-          <div className="grid md:grid-cols-2 gap-8 justify-center">
-            {organizingCommittee.map((person, index) => (
-              <div
-                key={index}
-                className="group relative p-[2px] rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:scale-105 transition duration-500"
-              >
-                <div className="rounded-2xl bg-[#111827] p-8 text-center h-full">
-                  <h4 className="text-xl font-bold group-hover:text-cyan-300 transition">
-                    {person.name}
-                  </h4>
+    </div>
+  );
+}
 
-                  <p className="text-sm mt-2 text-gray-400 tracking-wider">
-                    {person.role}
-                  </p>
 
-                  <div className="mt-4 h-[1px] w-0 bg-cyan-400 mx-auto group-hover:w-full transition-all duration-500"></div>
-                </div>
-              </div>
+export default function FacultySection() {
+  return (
+    <section id="faculty" className="py-20 bg-[#090B11] text-white">
+
+      {/* Title */}
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold">
+          Symposium <span className="text-cyan-400">Team</span>
+        </h2>
+      </div>
+
+      {/* MAIN GRID */}
+      <div className="max-w-6xl mx-auto px-6">
+
+        <div className="grid md:grid-cols-[1fr_auto_2fr] gap-6 items-start">
+
+          {/* LEFT SECTION */}
+          <div className="space-y-4">
+            {organizingCommittee.map((p, i) => (
+              <Card
+                key={i}
+                committee="Organizing Committee"
+                name={p.name}
+                role={p.role}
+              />
             ))}
           </div>
-        </div>
 
-        {/* Association Members */}
-        <div>
-          <h3 className="text-2xl font-bold text-center mb-10 text-purple-300">
-            Association Members
-          </h3>
+          {/* CENTER LINE (desktop only) */}
+          <div className="hidden md:flex justify-center">
+            <div className="w-[2px] h-full bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 opacity-60"></div>
+          </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {associationMembers.map((person, index) => (
-              <div
-                key={index}
-                className="group relative p-[2px] rounded-2xl bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 hover:scale-105 transition duration-500"
-              >
-                <div className="rounded-2xl bg-[#111827] p-8 text-center h-full">
-                  <h4 className="text-lg font-bold group-hover:text-purple-300 transition">
-                    {person.name}
-                  </h4>
-
-                  <p className="text-sm mt-2 text-gray-400 tracking-wider">
-                    {person.role}
-                  </p>
-
-                  <div className="mt-4 h-[1px] w-0 bg-purple-400 mx-auto group-hover:w-full transition-all duration-500"></div>
-                </div>
-              </div>
+          {/* RIGHT SECTION */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {associationMembers.map((p, i) => (
+              <Card
+                key={i}
+                committee="Association Member"
+                name={p.name}
+                role={p.role}
+              />
             ))}
           </div>
+
         </div>
 
       </div>

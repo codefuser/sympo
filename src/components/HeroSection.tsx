@@ -80,8 +80,6 @@
 //   );
 // }
 
-
-
 // ----------------------------------------------
 "use client";
 import React, { useEffect, useRef } from "react";
@@ -124,7 +122,7 @@ const ChipCircuitBackground = () => {
 
       constructor() {
         this.maxLen = Math.random() * 20 + 10;
-        this.speed = Math.random() * 2 + 1;
+        this.speed = Math.random() * 4 + 1;
         this.reset();
       }
 
@@ -134,32 +132,33 @@ const ChipCircuitBackground = () => {
         if (textElement) {
           const rect = textElement.getBoundingClientRect();
           const side = Math.floor(Math.random() * 4);
+const offset = 10; // spark text outline-kku velila start aagum
 
-          switch (side) {
-            case 0:
-              this.x = rect.left + Math.random() * rect.width;
-              this.y = rect.top;
-              this.initialDir = "UP";
-              break;
+switch (side) {
+  case 0: // top
+    this.x = rect.left + Math.random() * rect.width;
+    this.y = rect.top - offset;
+    this.initialDir = "UP";
+    break;
 
-            case 1:
-              this.x = rect.left + Math.random() * rect.width;
-              this.y = rect.bottom;
-              this.initialDir = "DOWN";
-              break;
+  case 1: // bottom
+    this.x = rect.left + Math.random() * rect.width;
+    this.y = rect.bottom + offset;
+    this.initialDir = "DOWN";
+    break;
 
-            case 2:
-              this.x = rect.left;
-              this.y = rect.top + Math.random() * rect.height;
-              this.initialDir = "LEFT";
-              break;
+  case 2: // left
+    this.x = rect.left - offset;
+    this.y = rect.top + Math.random() * rect.height;
+    this.initialDir = "LEFT";
+    break;
 
-            case 3:
-              this.x = rect.right;
-              this.y = rect.top + Math.random() * rect.height;
-              this.initialDir = "RIGHT";
-              break;
-          }
+  case 3: // right
+    this.x = rect.right + offset;
+    this.y = rect.top + Math.random() * rect.height;
+    this.initialDir = "RIGHT";
+    break;
+}
         } else {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
@@ -228,10 +227,10 @@ const ChipCircuitBackground = () => {
 
     setCanvasSize();
 
-   let lines = Array.from(
-  { length: window.innerWidth < 768 ? 30 : 60 },
-  () => new CircuitLine()
-);
+    let lines = Array.from(
+      { length: window.innerWidth < 768 ? 30 : 60 },
+      () => new CircuitLine(),
+    );
 
     const animate = () => {
       // PURE BLACK BACKGROUND
@@ -258,13 +257,19 @@ const ChipCircuitBackground = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 z-0 bg-black" />;
 };
 
-export default function HeroSection({ onRegister }: { onRegister?: () => void }) {
+export default function HeroSection({
+  onRegister,
+}: {
+  onRegister?: () => void;
+}) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-10">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-10"
+    >
       <ChipCircuitBackground />
 
       <div className="relative z-10 text-center px-4 w-full max-w-6xl flex flex-col items-center">
-        
         {/* College Header */}
         <div className="mb-6 md:mb-10">
           <h2 className="text-white text-[clamp(1rem,6vw,3rem)] font-black tracking-tight uppercase leading-tight">
@@ -272,13 +277,21 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
           </h2>
 
           <p className="text-cyan-400 text-[clamp(0.6rem,2vw,0.9rem)] tracking-[0.3em] font-mono mt-2">
-            AUTONOMOUS INSTITUTION
+            [AN AUTONOMOUS INSTITUTION]
           </p>
         </div>
 
-        <p className="text-gray-400 text-[10px] md:text-xs tracking-[0.2em] mb-4 uppercase">
-          Organized by the Department of ECE
-        </p>
+        <div className="mb-4 uppercase text-center">
+          <p className="text-gray-400 text-[10px] md:text-xs tracking-[0.25em]">
+            Organized by
+          </p>
+          <p className="text-cyan-400 text-sm md:text-lg font-bold tracking-[0.3em] mt-1">
+            Department of
+            <span className="text-[1.8em] text-white ml-2 animate-pulse ece-glow drop-shadow-[0_0_12px_rgba(0,242,255,0.9)]">
+              ECE
+            </span>
+          </p>
+        </div>
 
         <div className="bg-white/5 border border-white/10 px-4 md:px-8 py-2 rounded-sm mb-10">
           <p className="text-cyan-400 text-[9px] md:text-sm tracking-[0.3em] font-bold">
@@ -287,8 +300,8 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
         </div>
 
         {/* SPARKTRON TITLE */}
-        <div id="sparktron-title" className="relative mb-8 md:mb-16">
-          <h1 className="text-[clamp(2.5rem,12vw,8rem)] font-black text-white italic tracking-tighter leading-none">
+        <div id="sparktron-title" className="relative mb-6 md:mb-16">
+          <h1 className="text-[clamp(2.2rem,10vw,7rem)] font-black text-white italic tracking-tighter leading-none">
             SPARKTRON
             <span className="text-cyan-500 drop-shadow-[0_0_20px_rgba(0,242,255,0.8)]">
               '26
@@ -318,7 +331,9 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
         {/* Stats */}
         <div className="mt-16 flex gap-10 md:gap-20 items-center justify-center">
           <div className="text-center">
-            <p className="text-white text-3xl md:text-5xl font-black italic">05</p>
+            <p className="text-white text-3xl md:text-5xl font-black italic">
+              05
+            </p>
             <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-1">
               Events
             </p>
@@ -328,7 +343,7 @@ export default function HeroSection({ onRegister }: { onRegister?: () => void })
 
           <div className="text-center">
             <p className="text-white text-3xl md:text-5xl font-black italic">
-              ₹10K+
+              ₹17K+
             </p>
             <p className="text-gray-500 text-[10px] tracking-widest uppercase mt-1">
               Prizes

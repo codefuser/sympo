@@ -214,78 +214,94 @@
 
 /////////////////3--------------------------------------------------------
 import React from "react";
-import principalImg from "@/assets/principal.jpg";
-import hodImg from "@/assets/hod.jpg";
-import coordinatorImg from "@/assets/coordinator.jpg";
 
-const faculty = [
-  { name: "Dr. Rajesh Kumar", role: "Principal", img: principalImg },
-  { name: "Mr. Suresh Babu", role: "Secretary", img: principalImg },
-  { name: "Dr. Priya Sharma", role: "HOD", img: hodImg },
-  { name: "Mr. Arun Venkat", role: "Coordinator", img: coordinatorImg },
-  { name: "Dr. Kumar", role: "Professor", img: hodImg },
-  { name: "Dr. Meena", role: "Professor", img: hodImg },
-  { name: "Mr. Ravi", role: "Assistant Professor", img: coordinatorImg },
-  { name: "Ms. Divya", role: "Assistant Professor", img: coordinatorImg },
+const organizingCommittee = [
+  { name: "Mr. Arun Kumar", role: "Convenor" },
+  { name: "Ms. Divya Lakshmi", role: "Coordinator" },
 ];
 
-// Double the faculty array for seamless infinite loop
-const doubleFaculty = [...faculty, ...faculty];
+const associationMembers = [
+  { name: "Rakesh", role: "President" },
+  { name: "Sanjay", role: "Secretary" },
+  { name: "Harini", role: "Treasurer" },
+  { name: "Vignesh", role: "Vice President" },
+  { name: "Priya", role: "Joint Secretary" },
+  { name: "Karthik", role: "Executive Member" },
+];
 
 export default function FacultySection() {
   return (
-    // ID "faculty" inge add panni irukaen, Navbar-oda href kooda match aagum
-    <section id="faculty" className="py-24 relative overflow-hidden bg-[#090B11] text-white scroll-mt-20">
-      
-      {/* Animation Styles */}
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .scrolling-wrapper {
-          display: flex;
-          width: fit-content;
-          animation: scroll 30s linear infinite;
-        }
-        .scrolling-wrapper:active {
-          animation-play-state: running !important;
-        }
-      `}</style>
+    <section
+      id="faculty"
+      className="py-24 bg-[#090B11] text-white relative overflow-hidden"
+    >
+      {/* Title */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-extrabold">
+          Symposium <span className="text-cyan-400">Team</span>
+        </h2>
 
-      {/* Side Blurs ... (rest of your code) */}
-      <div className="absolute top-0 left-0 h-full w-40 bg-gradient-to-r from-black via-[#090B11]/90 to-transparent z-40 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 h-full w-40 bg-gradient-to-l from-black via-[#090B11]/90 to-transparent z-40 pointer-events-none"></div>
+        <div className="mt-4 h-1 w-24 bg-cyan-500 mx-auto rounded-full blur-[1px] opacity-60"></div>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-30 overflow-hidden">
-        {/* Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            College <span className="text-cyan-400">Heads</span>
-          </h2>
-          <div className="mt-4 h-1 w-20 bg-cyan-500 mx-auto rounded-full blur-[0.5px] opacity-50"></div>
+      <div className="max-w-7xl mx-auto px-6 space-y-16">
+
+        {/* Organizing Committee */}
+        <div>
+          <h3 className="text-2xl font-bold text-center mb-10 text-cyan-300">
+            Organizing Committee
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-8 justify-center">
+            {organizingCommittee.map((person, index) => (
+              <div
+                key={index}
+                className="group relative p-[2px] rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:scale-105 transition duration-500"
+              >
+                <div className="rounded-2xl bg-[#111827] p-8 text-center h-full">
+                  <h4 className="text-xl font-bold group-hover:text-cyan-300 transition">
+                    {person.name}
+                  </h4>
+
+                  <p className="text-sm mt-2 text-gray-400 tracking-wider">
+                    {person.role}
+                  </p>
+
+                  <div className="mt-4 h-[1px] w-0 bg-cyan-400 mx-auto group-hover:w-full transition-all duration-500"></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Custom Scrolling Container */}
-        <div className="scrolling-wrapper gap-8">
-          {doubleFaculty.map((person, index) => (
-            <div 
-              key={index} 
-              className="flex-shrink-0 w-72 group relative overflow-hidden rounded-2xl bg-[#111827]/40 border border-white/5 transition-all duration-700 hover:border-cyan-500/40"
-            >
-              {/* Image & Content ... */}
-              <div className="relative overflow-hidden h-80">
-                <img src={person.img} alt={person.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090B11] via-transparent to-transparent opacity-95"></div>
+        {/* Association Members */}
+        <div>
+          <h3 className="text-2xl font-bold text-center mb-10 text-purple-300">
+            Association Members
+          </h3>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {associationMembers.map((person, index) => (
+              <div
+                key={index}
+                className="group relative p-[2px] rounded-2xl bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 hover:scale-105 transition duration-500"
+              >
+                <div className="rounded-2xl bg-[#111827] p-8 text-center h-full">
+                  <h4 className="text-lg font-bold group-hover:text-purple-300 transition">
+                    {person.name}
+                  </h4>
+
+                  <p className="text-sm mt-2 text-gray-400 tracking-wider">
+                    {person.role}
+                  </p>
+
+                  <div className="mt-4 h-[1px] w-0 bg-purple-400 mx-auto group-hover:w-full transition-all duration-500"></div>
+                </div>
               </div>
-              <div className="p-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400/80 mb-1">{person.role}</p>
-                <h3 className="text-xl font-bold group-hover:text-cyan-300 transition-colors duration-300">{person.name}</h3>
-                <div className="mt-4 h-[1px] w-0 bg-cyan-500/60 transition-all duration-700 group-hover:w-full"></div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );

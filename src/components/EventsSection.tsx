@@ -146,13 +146,22 @@
 
 // -----------------------------------------------------------
 "use client";
-
+import { ListChecks } from "lucide-react";
 import React, { useState } from "react";
 import { Bot, Lightbulb, Zap, Users } from "lucide-react";
-
+import { 
+  FileText, 
+  Brain, 
+  Link2, 
+  Drama, 
+  Puzzle, 
+  ScrollText,
+  ChevronRight,
+  X
+} from "lucide-react";
 const events = [
   {
-    icon: Bot,
+    icon: FileText,
     name: "Paper Presentation",
     category: "Technical",
     desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
@@ -168,7 +177,7 @@ const events = [
     ],
   },
   {
-    icon: Lightbulb,
+    icon: Brain,
     name: "Mind Blitz",
     category: "Technical",
     desc: "Spark your intellect! Battle it out over microprocessors, networking, and digital logic in the ultimate ECE trivia challenge.",
@@ -184,7 +193,7 @@ const events = [
     ],
   },
   {
-    icon: Zap,
+    icon: Link2,
     name: "Tech Connection",
     category: "Technical",
     desc: "Decode the visual clues! Connect the images to guess the correct technical terms and showcase your lateral thinking",
@@ -200,7 +209,7 @@ const events = [
     ],
   },
   {
-    icon: Users,
+    icon: Drama,
     name: "Dumb challanger",
     category: "Non-Technical",
     desc: "A fun game where participants act out words without speaking while teammates guess the correct answer.",
@@ -216,7 +225,7 @@ const events = [
     ],
   },
   {
-    icon: Users,
+    icon: Puzzle,
     name: "Anagram",
     category: "Non-Technical",
     desc: "Participants rearrange scrambled letters to form meaningful words within a given time.",

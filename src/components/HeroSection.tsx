@@ -132,33 +132,33 @@ const ChipCircuitBackground = () => {
         if (textElement) {
           const rect = textElement.getBoundingClientRect();
           const side = Math.floor(Math.random() * 4);
-const offset = 10; // spark text outline-kku velila start aagum
+          const offset = 10; // spark text outline-kku velila start aagum
 
-switch (side) {
-  case 0: // top
-    this.x = rect.left + Math.random() * rect.width;
-    this.y = rect.top - offset;
-    this.initialDir = "UP";
-    break;
+          switch (side) {
+            case 0: // top
+              this.x = rect.left + Math.random() * rect.width;
+              this.y = rect.top - offset;
+              this.initialDir = "UP";
+              break;
 
-  case 1: // bottom
-    this.x = rect.left + Math.random() * rect.width;
-    this.y = rect.bottom + offset;
-    this.initialDir = "DOWN";
-    break;
+            case 1: // bottom
+              this.x = rect.left + Math.random() * rect.width;
+              this.y = rect.bottom + offset;
+              this.initialDir = "DOWN";
+              break;
 
-  case 2: // left
-    this.x = rect.left - offset;
-    this.y = rect.top + Math.random() * rect.height;
-    this.initialDir = "LEFT";
-    break;
+            case 2: // left
+              this.x = rect.left - offset;
+              this.y = rect.top + Math.random() * rect.height;
+              this.initialDir = "LEFT";
+              break;
 
-  case 3: // right
-    this.x = rect.right + offset;
-    this.y = rect.top + Math.random() * rect.height;
-    this.initialDir = "RIGHT";
-    break;
-}
+            case 3: // right
+              this.x = rect.right + offset;
+              this.y = rect.top + Math.random() * rect.height;
+              this.initialDir = "RIGHT";
+              break;
+          }
         } else {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
@@ -262,6 +262,32 @@ export default function HeroSection({
 }: {
   onRegister?: () => void;
 }) {
+  const symposiumDate = new Date("2026-03-24T09:00:00").getTime();
+
+  const [timeLeft, setTimeLeft] = React.useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = symposiumDate - now;
+
+      if (distance <= 0) return;
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((distance / (1000 * 60)) % 60),
+        seconds: Math.floor((distance / 1000) % 60),
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section
       id="home"
@@ -269,19 +295,19 @@ export default function HeroSection({
     >
       <ChipCircuitBackground />
 
-      <div className="relative z-10 text-center px-4 w-full max-w-6xl flex flex-col items-center">
+      <div className="relative  mt-5 md:mt-10 z-10 text-center px-4 w-full max-w-6xl flex flex-col items-center">
         {/* College Header */}
-        <div className="mb-6 md:mb-10">
+        <div className="mb-5 md:mb-5">
           <h2 className="text-white text-[clamp(1rem,6vw,3rem)] font-black tracking-tight uppercase leading-tight">
             Thamirabharani Engineering College
           </h2>
 
-          <p className="text-cyan-400 text-[clamp(0.6rem,2vw,0.9rem)] tracking-[0.3em] font-mono mt-2">
+          <p className="text-cyan-400 text-[clamp(0.6rem,2vw,0.9rem)] tracking-[0.3em] font-mono mt-0">
             [AN AUTONOMOUS INSTITUTION]
           </p>
         </div>
 
-        <div className="mb-4 uppercase text-center">
+        <div className="mb-2  uppercase text-center">
           <p className="text-gray-400 text-[10px] md:text-xs tracking-[0.25em]">
             Organized by
           </p>
@@ -293,14 +319,14 @@ export default function HeroSection({
           </p>
         </div>
 
-        <div className="bg-white/5 border border-white/10 px-4 md:px-8 py-2 rounded-sm mb-10">
+        <div className="bg-white/5 border border-white/10 px-4 md:px-8 py-2 rounded-sm mb-5">
           <p className="text-cyan-400 text-[9px] md:text-sm tracking-[0.3em] font-bold">
             NATIONAL LEVEL TECHNICAL SYMPOSIUM
           </p>
         </div>
 
         {/* SPARKTRON TITLE */}
-        <div id="sparktron-title" className="relative mb-6 md:mb-16">
+        <div id="sparktron-title" className="relative mb-2 md:mb-3">
           <h1 className="text-[clamp(2.2rem,10vw,7rem)] font-black text-white italic tracking-tighter leading-none">
             SPARKTRON
             <span className="text-cyan-500 drop-shadow-[0_0_20px_rgba(0,242,255,0.8)]">
@@ -310,7 +336,49 @@ export default function HeroSection({
 
           <div className="absolute -bottom-2 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
         </div>
+        {/* Symposium Date */}
+        <p  className="text-cyan-400 text-xs tracking-[0.35em] mb-4">
+          24 MARCH 2026
+        </p>
 
+        {/* Countdown */}
+        <div className="flex gap-4 md:gap-6 justify-center mb-2">
+          <div className="flex flex-col items-center px-4 py-2 border border-cyan-500/40 rounded-sm bg-white/5 backdrop-blur-sm shadow-[0_0_10px_rgba(0,242,255,0.2)]">
+            <span className="text-white text-xl md:text-3xl font-black font-mono">
+              {timeLeft.days}
+            </span>
+            <span className="text-[10px] tracking-widest text-cyan-400">
+               DAYS  
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center px-4 py-2 border border-cyan-500/40 rounded-sm bg-white/5 backdrop-blur-sm shadow-[0_0_10px_rgba(0,242,255,0.2)]">
+            <span className="text-white text-xl md:text-3xl font-black font-mono">
+              {timeLeft.hours}
+            </span>
+            <span className="text-[10px] tracking-widest text-cyan-400">
+              HOURS
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center px-4 py-2 border border-cyan-500/40 rounded-sm bg-white/5 backdrop-blur-sm shadow-[0_0_10px_rgba(0,242,255,0.2)]">
+            <span className="text-white text-xl md:text-3xl font-black font-mono">
+              {timeLeft.minutes}
+            </span>
+            <span className="text-[10px] tracking-widest text-cyan-400">
+              MIN
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center px-4 py-2 border border-cyan-500/40 rounded-sm bg-white/5 backdrop-blur-sm shadow-[0_0_10px_rgba(0,242,255,0.2)]">
+            <span className="text-white text-xl md:text-3xl font-black font-mono">
+              {timeLeft.seconds}
+            </span>
+            <span className="text-[10px] tracking-widest text-cyan-400">
+              SEC
+            </span>
+          </div>
+        </div>
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 md:gap-8 w-full max-w-md justify-center">
           <button
@@ -329,7 +397,7 @@ export default function HeroSection({
         </div>
 
         {/* Stats */}
-        <div className="mt-16 flex gap-10 md:gap-20 items-center justify-center">
+        <div className="mt-5 flex gap-10 md:gap-20 items-center justify-center">
           <div className="text-center">
             <p className="text-white text-3xl md:text-5xl font-black italic">
               05

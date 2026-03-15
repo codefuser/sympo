@@ -180,6 +180,11 @@ html {
 .backdrop-blur-lg {
     width: 205px;
 }
+@keyframes neonPulse {
+  0% { box-shadow: 0 0 6px rgba(0,242,255,0.2); }
+  50% { box-shadow: 0 0 20px rgba(0,242,255,0.6); }
+  100% { box-shadow: 0 0 6px rgba(0,242,255,0.2); }
+}
 /* ---------------------------------------------- */
 @layer utilities {
   .glow-primary {

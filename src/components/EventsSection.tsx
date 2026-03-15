@@ -142,22 +142,20 @@
 //   );
 // }
 
-
-
 // -----------------------------------------------------------
 "use client";
 import { ListChecks } from "lucide-react";
 import React, { useState } from "react";
 import { Bot, Lightbulb, Zap, Users } from "lucide-react";
-import { 
-  FileText, 
-  Brain, 
-  Link2, 
-  Drama, 
-  Puzzle, 
+import {
+  FileText,
+  Brain,
+  Link2,
+  Drama,
+  Puzzle,
   ScrollText,
   ChevronRight,
-  X
+  X,
 } from "lucide-react";
 const events = [
   {
@@ -286,7 +284,7 @@ function EventCard({ event }: { event: any }) {
                 ))}
               </ul>
             </div>
-            
+
             {/* Rules-ஐ மூட பட்டன் */}
             <div className="flex items-end justify-between mt-auto pt-4 border-t border-white/10">
               <div className="flex flex-col items-start gap-1">
@@ -312,7 +310,6 @@ function EventCard({ event }: { event: any }) {
               {event.desc}
             </p>
             <div className="flex items-end justify-between mt-auto pt-4 border-t border-white/10">
-              
               {/* Rules பட்டன் Members-க்கு மேலே (Outline இல்லாமல்) */}
               <div className="flex flex-col items-start gap-1">
                 <button
@@ -347,7 +344,11 @@ function EventCard({ event }: { event: any }) {
   );
 }
 
-export default function EventsSection() {
+export default function EventsSection({
+  onRegister,
+}: {
+  onRegister?: () => void;
+}) {
   return (
     <section id="events" className="py-24 px-4 relative overflow-hidden">
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none -z-10" />
@@ -368,6 +369,32 @@ export default function EventsSection() {
           {events.map((event) => (
             <EventCard key={event.name} event={event} />
           ))}
+        </div>
+        {/* Register Button */}
+        <div className="flex justify-center mt-16">
+         <button
+  onClick={() => {
+    const registerBtn = document.querySelector("#home button");
+    registerBtn?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  }}
+  className="
+  px-12
+  py-4
+  bg-cyan-500
+  text-black
+  font-black
+  tracking-widest
+  text-xs
+  rounded-sm
+  transition-all
+  duration-300
+  hover:scale-110
+  hover:bg-cyan-400
+  hover:shadow-[0_0_35px_rgba(0,242,255,0.9)]
+  "
+>
+  REGISTER NOW
+</button>
         </div>
       </div>
     </section>

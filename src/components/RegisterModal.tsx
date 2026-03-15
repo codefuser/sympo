@@ -165,7 +165,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               </div>
 
               <div className="space-y-2 text-sm">
-                <p className="font-display font-bold text-foreground text-sm">Registration Fee: ₹200 per event</p>
+                <p className="font-display font-bold text-foreground text-sm">Registration Fee: ₹250</p>
                 <ul className="space-y-1.5 text-muted-foreground text-xs">
                   <li className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />

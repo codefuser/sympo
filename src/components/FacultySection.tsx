@@ -216,17 +216,17 @@
 import React from "react";
 
 const organizingCommittee = [
-  { name: "Mr. Arun Kumar", role: "Convenor" },
-  { name: "Ms. Divya Lakshmi", role: "Coordinator" },
+  { name: "Mr. S. R. Sam Kingsley", role: "Convenor" },
+  { name: "Mrs. J. Amirtha Jeeva Ruby", role: "Coordinator" },
 ];
 
 const associationMembers = [
-  { name: "Rakesh", role: "President" },
-  { name: "Sanjay", role: "Secretary" },
-  { name: "Harini", role: "Treasurer" },
-  { name: "Vignesh", role: "Vice President" },
-  { name: "Priya", role: "Joint Secretary" },
-  { name: "Karthik", role: "Executive Member" },
+  { name: "Mr. M. Lakshmanan", role: "President" },
+  { name: "Ms. N. Raihana", role: "Secretary" },
+  { name: "Mr. A. Vasamuthu", role: "Treasurer" },
+  { name: "Mr. S. Sri Balamurugan", role: "Vice President" },
+  { name: "Ms. C. Gopika", role: "Joint Secretary" },
+  { name: "Mr. P. Vignesh", role: "Treasurer" },
 ];
 
 function Card({ committee, name, role }) {

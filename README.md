@@ -5,7 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/codefuser/sympo?style=flat-square)
 ![GitHub license](https://img.shields.io/github/license/codefuser/sympo?style=flat-square)
 
-A modern and responsive **Symposium Registration Website** created for **SPARKTRON'26**, an electronics engineering technical symposium.  
+A modern and responsive **Symposium Registration Website ** created for **SPARKTRON'2k26**, an electronics engineering technical symposium.  
 
 The platform allows participants to explore event details, register for competitions, and access symposium information through a clean and interactive web interface.
 

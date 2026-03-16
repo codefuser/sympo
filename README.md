@@ -1,73 +1,88 @@
-# Welcome to your Lovable project
+# ⚡ SPARKTRON'26 – Symposium Registration Website
 
-## Project info
+![GitHub stars](https://img.shields.io/github/stars/codefuser/sympo?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/codefuser/sympo?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/codefuser/sympo?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/codefuser/sympo?style=flat-square)
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+A modern and responsive **Symposium Registration Website** created for **SPARKTRON'26**, an electronics engineering technical symposium.  
 
-## How can I edit this code?
+The platform allows participants to explore event details, register for competitions, and access symposium information through a clean and interactive web interface.
 
-There are several ways of editing your application.
+This project focuses on creating a **smooth registration experience for college technical events** while maintaining a modern UI design suitable for engineering symposiums.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+# 🌐 Live Demo
 
-Changes made via Lovable will be committed automatically to this repo.
+<p align="center">
 
-**Use your preferred IDE**
+<a href="https://ece-sparktron.vercel.app/">
+<img src="https://img.shields.io/badge/🚀_VIEW_LIVE_WEBSITE-SPARKTRON'26-0A66C2?style=for-the-badge&logo=vercel&logoColor=white" />
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+</a>
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+</p>
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 📸 Screenshots
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Home Page
+![Home](screenshots/home.png)
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Events Section
+![Events](screenshots/events.png)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Registration Page
+![Registration](screenshots/registration.png)
 
-**Edit a file directly in GitHub**
+*(Add screenshots inside a `screenshots` folder in the repository)*
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+# ✨ Features
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Online symposium registration system  
+- Event information and competition details  
+- Responsive UI for desktop and mobile  
+- Simple and intuitive user interface  
+- Clean engineering-themed design  
+- Fast loading and optimized performance  
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+# 🧠 Purpose of the Project
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This website was developed to support **SPARKTRON'26**, a technical symposium organized for engineering students.  
 
-## How can I deploy this project?
+The platform helps streamline the event registration process and provides participants with easy access to symposium information.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+It demonstrates how modern web technologies can be used to create **efficient and user-friendly event platforms for academic institutions.**
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+# 🛠 Tech Stack
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Frontend  
+- React  
+- TypeScript  
+- Tailwind CSS  
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Deployment  
+- Vercel
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Developed By
+
+**Codefuser**
+
+GitHub:  
+https://github.com/codefuser

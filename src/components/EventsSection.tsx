@@ -159,25 +159,25 @@ import {
 } from "lucide-react";
 const events = [
   {
-  icon: FileText,
-  name: "Paper Presentation",
-  category: "Technical",
-  desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
-  coordinator: {
-    name: "Mr. R. Ramar Kalangiam",
-    designation: "A/P of ECE",
+    icon: FileText,
+    name: "Paper Presentation",
+    category: "Technical",
+    desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
+    coordinator: {
+      name: "Mr. R. Ramar Kalangiam",
+      designation: "A/P of ECE",
+    },
+    team: "1–3 members",
+    rules: [
+      "Participants must register in advance with the following details: Name, College, and Paper Title.",
+      "Each team can have 1–3 members, and at least one presenter must be present during the event.",
+      "The submitted paper must be original work. Plagiarism will lead to disqualification.",
+      "Participants must submit their PPT presentation before 21-03-2026 to xxxxxx@ggh.com.",
+      "Presentation time is 10–15 minutes including the Q&A session.",
+      "A projector and system will be provided. Participants are advised not to use personal laptops.",
+      "Evaluation will be based on content quality, presentation skills, and performance in the Q&A session.",
+    ],
   },
-  team: "1–3 members",
-  rules: [
-    "Participants must register in advance with the following details: Name, College, and Paper Title.",
-    "Each team can have 1–3 members, and at least one presenter must be present during the event.",
-    "The submitted paper must be original work. Plagiarism will lead to disqualification.",
-    "Participants must submit their PPT presentation before 21-03-2026 to xxxxxx@ggh.com.",
-    "Presentation time is 10–15 minutes including the Q&A session.",
-    "A projector and system will be provided. Participants are advised not to use personal laptops.",
-    "Evaluation will be based on content quality, presentation skills, and performance in the Q&A session."
-  ],
-},
   {
     icon: Brain,
     name: "Mind Blitz",
@@ -207,9 +207,9 @@ const events = [
     },
     team: "2 members only",
     rules: [
-      "Individual event.",
-      "Complete the puzzle within the given time limit.",
-      "Points awarded based on speed and accuracy.",
+      "The event consists of a total of two rounds.",
+      "Each team must have exactly 2 members.",
+      "Teams that qualify in the first round will advance to the second round.",
     ],
   },
   {

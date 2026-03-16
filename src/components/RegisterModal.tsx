@@ -165,21 +165,21 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               </div>
 
               <div className="space-y-2 text-sm">
-                <p className="font-display font-bold text-foreground text-sm">Registration Fee: ₹250</p>
+                <p className="font-display font-bold text-foreground text-sm">Registration Fee: ₹200</p>
                 <ul className="space-y-1.5 text-muted-foreground text-xs">
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
-                    Scan the QR code and complete payment via UPI.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
-                    Take a <span className="text-primary font-semibold">screenshot</span> of the payment confirmation.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
-                    Upload the screenshot in the form below (required).
-                  </li>
-                </ul>
+  <li className="flex items-start gap-2">
+    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+    You can pay the registration fee online using the QR code.
+  </li>
+  <li className="flex items-start gap-2">
+    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+    Payment is <span className="text-primary font-semibold">optional</span>.
+  </li>
+  <li className="flex items-start gap-2">
+    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+    You may also <span className="text-primary font-semibold">register now and pay offline during the event</span>.
+  </li>
+</ul>
               </div>
             </div>
           </div>

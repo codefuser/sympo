@@ -34,7 +34,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
-                <Mail className="w-3 h-3" /> tecece9531@gmail.com
+                <Mail className="w-3 h-3" /> ece-sparktron2k26@gmail.com
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3 h-3" /> +91 7708 685 345

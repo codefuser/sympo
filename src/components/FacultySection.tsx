@@ -222,10 +222,10 @@ const organizingCommittee = [
 
 const associationMembers = [
   { name: "Mr. M. Lakshmanan", role: "President" },
-  { name: "Ms. N. Raihana", role: "Secretary" },
-  { name: "Mr. A. Vasamuthu", role: "Treasurer" },
   { name: "Mr. S. Sri Balamurugan", role: "Vice President" },
+  { name: "Ms. N. Raihana", role: "Secretary" },
   { name: "Ms. C. Gopika", role: "Joint Secretary" },
+  { name: "Mr. A. Vasamuthu", role: "Treasurer" },
   { name: "Mr. P. Vignesh", role: "Treasurer" },
 ];
 

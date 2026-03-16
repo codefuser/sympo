@@ -159,21 +159,25 @@ import {
 } from "lucide-react";
 const events = [
   {
-    icon: FileText,
-    name: "Paper Presentation",
-    category: "Technical",
-    desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
-    coordinator: {
-      name: "Mr. R. Ramar Kalangiam",
-      designation: "A/P of ECE",
-    },
-    team: "2–3 members",
-    rules: [
-      "Maximum 3 members per team.",
-      "Presentation should be in standard IEEE format.",
-      "7 minutes for presentation and 3 minutes for Q&A.",
-    ],
+  icon: FileText,
+  name: "Paper Presentation",
+  category: "Technical",
+  desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
+  coordinator: {
+    name: "Mr. R. Ramar Kalangiam",
+    designation: "A/P of ECE",
   },
+  team: "1–3 members",
+  rules: [
+    "Participants must register in advance with the following details: Name, College, and Paper Title.",
+    "Each team can have 1–3 members, and at least one presenter must be present during the event.",
+    "The submitted paper must be original work. Plagiarism will lead to disqualification.",
+    "Participants must submit their PPT presentation before 21-03-2026 to xxxxxx@ggh.com.",
+    "Presentation time is 10–15 minutes including the Q&A session.",
+    "A projector and system will be provided. Participants are advised not to use personal laptops.",
+    "Evaluation will be based on content quality, presentation skills, and performance in the Q&A session."
+  ],
+},
   {
     icon: Brain,
     name: "Mind Blitz",
@@ -183,11 +187,13 @@ const events = [
       name: "Ms. S. Selvanandhini",
       designation: "A/P of ECE",
     },
-    team: "1 member only",
+    team: "2 members only",
     rules: [
-      "Individual participation only.",
-      "Mobile phones are strictly prohibited.",
-      "Decisions of the judges will be final.",
+      "A mobile phone with internet access is required to participate in the quiz through the website.",
+      "Only individual participation is allowed (team participation is not permitted).",
+      "Participants must complete the quiz within the given time limit.",
+      "Only one attempt is allowed per participant.",
+      "The decision of the organizers will be final.",
     ],
   },
   {
@@ -199,7 +205,7 @@ const events = [
       name: "Ms. J. Pushpa Jaucline",
       designation: "A/P of ECE",
     },
-    team: "1 member only",
+    team: "2 members only",
     rules: [
       "Individual event.",
       "Complete the puzzle within the given time limit.",
@@ -208,18 +214,41 @@ const events = [
   },
   {
     icon: Drama,
-    name: "Dumb challanger",
+    name: "Dumb Challenger",
     category: "Non-Technical",
     desc: "A fun game where participants act out words without speaking while teammates guess the correct answer.",
     coordinator: {
       name: "Mr. A. Harivelayutham",
       designation: "A/P of ECE",
     },
-    team: "2 members",
+    team: "2 members only",
     rules: [
-      "Strictly no speaking or lip-syncing while acting.",
-      "Time limit per word is 60 seconds.",
-      "Direct pointing to objects is not allowed.",
+      {
+        text: "Two players are needed to play this game.",
+      },
+      {
+        text: "The player must act the movie name without speaking.",
+      },
+      {
+        text: "No lip movement to say the words.",
+      },
+      {
+        text: "No writing letters or numbers in the air.",
+      },
+      {
+        text: "No pointing to objects in the room to hint the movie.",
+      },
+      {
+        text: "The game has three rounds:",
+        sub: [
+          "Round 1 – 45 seconds",
+          "Round 2 – 30 seconds",
+          "Round 3 – 20 seconds",
+        ],
+      },
+      {
+        text: "The team that guesses the highest number of movie names wins.",
+      },
     ],
   },
   {
@@ -251,7 +280,7 @@ function EventCard({ event }: { event: any }) {
   return (
     <div
       // Hover செய்யும் போது வெளியே Glowing Effect வர hover:shadow-[0_0_25px_#00e5ff66] சேர்க்கப்பட்டுள்ளது
-      className="w-full sm:w-[calc(50%-1.125rem)] lg:w-[calc(33.333%-1.5rem)] rounded-xl p-5 flex flex-col gap-5 group transition-all duration-300 hover:scale-105 hover:-translate-y-1 min-h-[260px] relative bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_0_25px_#00e5ff55] overflow-hidden"
+      className="w-full sm:w-[calc(50%-1.125rem)] lg:w-[calc(33.333%-1.5rem)] rounded-xl p-5 flex flex-col gap-5 group transition-all duration-300 hover:scale-105 hover:-translate-y-1 min-h-[250px] relative bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_0_25px_#00e5ff55] overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -276,12 +305,28 @@ function EventCard({ event }: { event: any }) {
         {isClicked ? (
           // Rules காட்டும் பகுதி
           <div className="flex flex-col flex-1 animate-in fade-in zoom-in-95 duration-300">
-            <div className="text-xs text-muted-foreground space-y-2 flex-1">
+            <div className="text-xs text-muted-foreground space-y-2 flex-1 max-h-[120px] overflow-y-auto pr-1 custom-scroll">
               <p className="font-semibold text-primary">Rules & Guidelines:</p>
-              <ul className="list-disc pl-4 space-y-1">
-                {event.rules.map((rule: string, idx: number) => (
-                  <li key={idx}>{rule}</li>
-                ))}
+              <ul className="list-disc pl-4 space-y-2">
+                {event.rules.map((rule: any, idx: number) => {
+                  if (typeof rule === "string") {
+                    return <li key={idx}>{rule}</li>;
+                  }
+
+                  return (
+                    <li key={idx}>
+                      {rule.text}
+
+                      {rule.sub && (
+                        <ul className="list-disc pl-5 mt-1 space-y-1 text-muted-foreground/90">
+                          {rule.sub.map((subRule: string, subIdx: number) => (
+                            <li key={subIdx}>{subRule}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -371,30 +416,37 @@ export default function EventsSection({
           ))}
         </div>
         {/* Register Button */}
-        <div className="flex justify-center mt-16">
-         <button
-  onClick={() => {
-    const registerBtn = document.querySelector("#home button");
-    registerBtn?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-  }}
-  className="
-  px-12
-  py-4
-  bg-cyan-500
-  text-black
-  font-black
-  tracking-widest
-  text-xs
-  rounded-sm
-  transition-all
-  duration-300
-  hover:scale-110
-  hover:bg-cyan-400
-  hover:shadow-[0_0_35px_rgba(0,242,255,0.9)]
-  "
->
-  REGISTER NOW
-</button>
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={() => {
+              const registerBtn = document.querySelector("#home button");
+              registerBtn?.dispatchEvent(
+                new MouseEvent("click", { bubbles: true }),
+              );
+            }}
+            className="
+    px-10
+    py-3
+    text-sm
+    font-bold
+    tracking-wider
+    text-white
+    rounded-lg
+    border
+    border-cyan-400/40
+    bg-gradient-to-r
+    from-cyan-500/20
+    to-blue-500/20
+    backdrop-blur-md
+    hover:scale-105
+    hover:border-cyan-300
+    hover:shadow-[0_0_30px_rgba(0,229,255,0.7)]
+    transition-all
+    duration-300
+    "
+          >
+            REGISTER NOW
+          </button>
         </div>
       </div>
     </section>

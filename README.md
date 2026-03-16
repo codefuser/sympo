@@ -29,13 +29,13 @@ This project focuses on creating a **smooth registration experience for college 
 # 📸 Screenshots
 
 ### Home Page
-![Home](screenshots/home.png)
+![Home](src/img/Home.png)
 
 ### Events Section
-![Events](screenshots/events.png)
+![Events](src/img/Event.png)
 
-### Registration Page
-![Registration](screenshots/registration.png)
+### Footer and Team
+![Footer and Team](src/img/footer_and_team.png)
 
 *(Add screenshots inside a `screenshots` folder in the repository)*
 

@@ -330,7 +330,7 @@ export default function HeroSection({
           <h1 className="text-[clamp(2.2rem,10vw,7rem)] font-black text-white italic tracking-tighter leading-none">
             SPARKTRON
             <span className="text-cyan-500 drop-shadow-[0_0_20px_rgba(0,242,255,0.8)]">
-              '26
+              '2k26
             </span>
           </h1>
 

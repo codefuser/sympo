@@ -12,7 +12,7 @@ const Sponsors = () => {
 
   useEffect(() => {
     let position = 0;
-    const speed = 6;
+    const speed = 0.9;
 
     const animate = () => {
       const track = trackRef.current;

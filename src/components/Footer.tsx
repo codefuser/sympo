@@ -18,7 +18,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-primary" />
               <span className="font-display text-sm font-bold gradient-text tracking-widest">
-                SPARKTRON'26
+                SPARKTRON'2k26
               </span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -34,7 +34,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
-                <Mail className="w-3 h-3" /> ece-sparktron2k26@gmail.com
+                <Mail className="w-3 h-3" /> ecesparktron2k26@gmail.com
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3 h-3" /> +91 7708 685 345
@@ -104,7 +104,7 @@ export default function Footer() {
         <div className="section-divider mb-6" />
 
         <p className="text-center text-xs text-muted-foreground">
-          © 2026 SPARKTRON'26 — Dept. of ECE, Thamirabharani Engineering
+          © 2026 SPARKTRON'2k26 — Dept. of ECE, Thamirabharani Engineering
           College. All rights reserved.
         </p>
       </div>

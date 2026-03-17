@@ -61,7 +61,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <a href="#home" className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-cyan-400" />
-            <span className="font-display text-sm font-bold tracking-widest text-white">SPARKTRON'26</span>
+            <span className="font-display text-sm font-bold tracking-widest text-white">SPARKTRON'2k26</span>
           </a>
 
           {/* Desktop Nav */}

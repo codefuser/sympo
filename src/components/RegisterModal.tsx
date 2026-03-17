@@ -113,6 +113,8 @@
 
 
 
+
+
 import { ExternalLink, X, ClipboardList, QrCode } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import upiQrImage from "../assets/PaymentQR.png";
@@ -146,12 +148,64 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
         </div>
 
         <div className="p-6 space-y-6">
+
+        {/* Step 2: Registration Form */}
+          <div className="card-glow rounded-xl p-5 border border-primary/20">
+            <p className="font-display text-xs text-primary tracking-[0.3em] uppercase mb-4 flex items-center gap-2">
+              <ClipboardList className="w-4 h-4" />
+              Step 1 — Fill Registration Form
+            </p>
+            
+            <div className="flex items-start gap-3 bg-primary/10 border border-primary/20 rounded-xl p-3 mb-4">
+              <ClipboardList className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+              <p className="text-xs text-muted-foreground">
+                Fields required:{" "}
+                <span className="text-primary font-semibold">Name, Mobile Number, Department, College Name, Email</span>{" "}
+                and <span className="text-primary font-semibold">Payment Screenshot</span>.
+              </p>
+            </div>
+
+            <div className="rounded-xl overflow-hidden border border-border">
+              <a
+  href="https://docs.google.com/forms/d/e/1FAIpQLScChLyBESZ8snIWtNv7F_o2KRss4-xyckU9As076UskRd93AA/viewform"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Register for SPARKTRON'26
+</a>
+              {/* <iframe
+                src={GOOGLE_FORM_URL}
+                width="100%"
+                height="640"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title="SPARKTRON'26 Registration Form"
+                className="w-full"
+              >
+                Loading…
+              </iframe> */}
+            </div>
+
+            <div className="mt-4 text-center">
+              <p className="text-xs text-muted-foreground mb-1">To Register Sparktron 2k26 Click below link</p>
+              <a
+                href={GOOGLE_FORM_URL.replace("?embedded=true", "")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-display font-bold text-primary hover:underline"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                  Open Registration Form
+              </a>
+            </div>
+          </div>
           
-          {/* Step 1: Payment QR */}
+          {/* Step 2: Payment QR */}
           <div className="card-glow rounded-xl p-5 border border-primary/20">
             <p className="font-display text-xs text-primary tracking-[0.3em] uppercase mb-4 flex items-center gap-2">
               <QrCode className="w-4 h-4" />
-              Step 1 — Pay Registration Fee
+              Step 2 — Pay Registration Fee
             </p>
             <div className="flex flex-col sm:flex-row gap-5 items-center">
               
@@ -167,67 +221,24 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
               <div className="space-y-2 text-sm">
                 <p className="font-display font-bold text-foreground text-sm">Registration Fee: ₹200</p>
                 <ul className="space-y-1.5 text-muted-foreground text-xs">
-  <li className="flex items-start gap-2">
-    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
-    You can pay the registration fee online using the QR code.
-  </li>
-  <li className="flex items-start gap-2">
-    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
-    Payment is <span className="text-primary font-semibold">optional</span>.
-  </li>
-  <li className="flex items-start gap-2">
-    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
-    You may also <span className="text-primary font-semibold">register now and pay offline during the event</span>.
-  </li>
-</ul>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+                    Scan the QR code and complete payment via UPI.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+                    Take a <span className="text-primary font-semibold">screenshot</span> of the payment confirmation.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+                    Upload the screenshot in the form below (required).
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
-          {/* Step 2: Registration Form */}
-          <div className="card-glow rounded-xl p-5 border border-primary/20">
-            <p className="font-display text-xs text-primary tracking-[0.3em] uppercase mb-4 flex items-center gap-2">
-              <ClipboardList className="w-4 h-4" />
-              Step 2 — Fill Registration Form
-            </p>
-            
-            <div className="flex items-start gap-3 bg-primary/10 border border-primary/20 rounded-xl p-3 mb-4">
-              <ClipboardList className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <p className="text-xs text-muted-foreground">
-                Fields required:{" "}
-                <span className="text-primary font-semibold">Name, Mobile Number, Department, College Name, Email</span>{" "}
-                and <span className="text-primary font-semibold">Payment Screenshot</span>.
-              </p>
-            </div>
-
-            <div className="rounded-xl overflow-hidden border border-border">
-              <iframe
-                src={GOOGLE_FORM_URL}
-                width="100%"
-                height="640"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                title="SPARKTRON'26 Registration Form"
-                className="w-full"
-              >
-                Loading…
-              </iframe>
-            </div>
-
-            <div className="mt-4 text-center">
-              <p className="text-xs text-muted-foreground mb-1">Having trouble with the embedded form?</p>
-              <a
-                href={GOOGLE_FORM_URL.replace("?embedded=true", "")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-display font-bold text-primary hover:underline"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                Open in New Tab
-              </a>
-            </div>
-          </div>
+          
         </div>
       </DialogContent>
     </Dialog>

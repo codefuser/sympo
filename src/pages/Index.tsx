@@ -8,6 +8,7 @@ import FacultySection from "@/components/FacultySection";
 // import QuizSection from "@/components/QuizSection";
 import Footer from "@/components/Footer";
 import RegisterModal from "@/components/RegisterModal";
+import Sponsors from "@/components/Sponsors";
 
 const Index = () => {
   const [registerOpen, setRegisterOpen] = useState(false);
@@ -21,6 +22,7 @@ const Index = () => {
         <SymposiumSection />
         <EventsSection />
         <FacultySection />
+        <Sponsors />
         {/* <QuizSection /> */}
       </main>
       <Footer />

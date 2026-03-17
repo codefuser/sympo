@@ -262,9 +262,14 @@ const events = [
     },
     team: "1 member only",
     rules: [
-      "Words must be found in standard English dictionaries.",
-      "Proper nouns are not accepted.",
-      "Highest score wins in case of a tie.",
+      "Single players are needed to play this game.",
+      "Every letter should appear the same number of times as in the original word.",
+      "All the letters from the original word must be used in the new word.",
+      "The game has only one round.",
+      "Those who guesses the highest numbers of words wins.",
+      "You can change the order of letters, but you cannot add or remove letters.",
+      "The rearranged letters should usually form a valid word or phrase.",
+
     ],
   },
 ];

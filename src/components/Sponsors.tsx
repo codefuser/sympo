@@ -39,7 +39,7 @@ const Sponsors = () => {
 
         {/* Title */}
         <h2 className="text-white text-4xl text-center mb-16">
-          Our Sponsors
+          Our <span className="text-cyan-400">Sponsors</span> 
         </h2>
 
         {/* Slider */}

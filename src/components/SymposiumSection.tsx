@@ -162,7 +162,7 @@ export default function SymposiumSection() {
             The Event
           </p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-            About <span className="gradient-text">SPARKTRON'26</span>
+            About <span className="gradient-text">SPARKTRON'2k26</span>
           </h2>
           <div className="section-divider w-24 mx-auto" />
         </div>
@@ -170,7 +170,7 @@ export default function SymposiumSection() {
         <div className="grid md:grid-cols-1 gap-12 items-center mb-16">
           <div>
             <p className="text-muted-foreground leading-relaxed  mb-6">
-              SPARKTRON’26 is a National Level Technical Symposium organized by
+              SPARKTRON’2k26 is a National Level Technical Symposium organized by
               the Department of Electronics and Communication Engineering,
               Thamirabharani Engineering College. The event brings together
               students from various colleges to explore emerging technologies,
@@ -181,7 +181,7 @@ export default function SymposiumSection() {
               The symposium features exciting competitions such as Paper
               Presentation, Mind Blitz, and Technical Connection, along with
               engaging non-technical events like Dumb Challenger and Anagram.
-              SPARKTRON’26 provides a platform for students to enhance their
+              SPARKTRON’2k26 provides a platform for students to enhance their
               technical skills, encourage innovation, and connect with fellow
               aspiring engineers from different institutions.
             </p>

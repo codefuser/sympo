@@ -138,7 +138,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
         <div className="sticky top-0 z-10 bg-background border-b border-border px-6 py-4 flex items-center justify-between">
           <div>
             <DialogTitle className="font-display text-base font-bold gradient-text tracking-widest">
-              REGISTER — SPARKTRON'26
+              REGISTER — SPARKTRON'2k26
             </DialogTitle>
             <p className="text-xs text-muted-foreground mt-0.5">Fill in the form below to secure your spot</p>
           </div>
@@ -171,7 +171,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
   target="_blank"
   rel="noopener noreferrer"
 >
-  Register for SPARKTRON'26
+  Register for SPARKTRON'2k26
 </a>
               {/* <iframe
                 src={GOOGLE_FORM_URL}
@@ -189,7 +189,7 @@ export default function RegisterModal({ open, onClose }: RegisterModalProps) {
 
             <div className="mt-4 text-center">
               <p className="text-xs text-muted-foreground mb-1">To Register Sparktron 2k26 Click below link</p>
-              <a
+              <a  
                 href={GOOGLE_FORM_URL.replace("?embedded=true", "")}
                 target="_blank"
                 rel="noopener noreferrer"

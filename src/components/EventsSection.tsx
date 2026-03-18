@@ -165,7 +165,7 @@ const events = [
     desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
     coordinator: {
       name: "Mr. R. Ramar Kalangiam",
-      designation: "A/P of ECE",
+      designation: "Asst. Professor of ECE",
     },
     team: "1–2 members",
     rules: [
@@ -186,7 +186,7 @@ const events = [
     desc: "Spark your intellect! Battle it out over microprocessors, networking, and digital logic in the ultimate ECE trivia challenge.",
     coordinator: {
       name: "Ms. S. Selvanandhini",
-      designation: "A/P of ECE",
+      designation: "Asst. Professor of ECE",
     },
     team: "1 member only",
     rules: [
@@ -205,7 +205,7 @@ const events = [
     desc: "Decode the visual clues! Connect the images to guess the correct technical terms and showcase your lateral thinking",
     coordinator: {
       name: "Ms. J. Pushpa Jaucline",
-      designation: "A/P of ECE",
+      designation: "Asst. Professor of ECE",
     },
     team: "2 members only",
     rules: [
@@ -222,7 +222,7 @@ const events = [
     desc: "A fun game where participants act out words without speaking while teammates guess the correct answer.",
     coordinator: {
       name: "Mr. A. Harivelayutham",
-      designation: "A/P of ECE",
+      designation: "Asst. Professor of ECE",
     },
     team: "2 members only",
     rules: [
@@ -264,7 +264,7 @@ const events = [
     desc: "Participants rearrange scrambled letters to form meaningful words within a given time.",
     coordinator: {
       name: "Ms. V. P. Veera Sivagami Pandi",
-      designation: "A/P of ECE",
+      designation: "Asst. Professor of ECE",
     },
     team: "1 member only",
     rules: [

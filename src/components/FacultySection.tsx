@@ -276,7 +276,7 @@ export default function FacultySection() {
       {/* Title */}
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold">
-          Symposium <span className="text-cyan-400">Team</span>
+          Organzing <span className="text-cyan-400">Committee</span>
         </h2>
       </div>
 
@@ -286,11 +286,11 @@ export default function FacultySection() {
         <div className="grid md:grid-cols-[1fr_auto_2fr] gap-6 items-start">
 
           {/* LEFT SECTION */}
-          <div className="space-y-4">
+          <div className="space-y-8">
             {organizingCommittee.map((p, i) => (
               <Card
                 key={i}
-                committee="Organizing Committee"
+                committee=""
                 name={p.name}
                 role={p.role}
               />

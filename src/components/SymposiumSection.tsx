@@ -180,7 +180,7 @@ export default function SymposiumSection() {
             <p className="text-muted-foreground leading-relaxed mb-6">
               The symposium features exciting competitions such as Paper
               Presentation, Mind Blitz, and Technical Connection, along with
-              engaging non-technical events like Dumb Challenger and Anagram.
+              engaging non-technical events like Dumb Charade and Anagram.
               SPARKTRON’2k26 provides a platform for students to enhance their
               technical skills, encourage innovation, and connect with fellow
               aspiring engineers from different institutions.
@@ -216,8 +216,11 @@ export default function SymposiumSection() {
 
         {/* Timeline */}
         <div className="card-glow rounded-2xl p-8">
-          <h3 className="font-display text-xl font-bold text-center mb-8 gradient-text tracking-wide">
-            EVENT SCHEDULE — March 24, 2026
+          <h3 className="font-display text-xl font-bold text-center mb-3 text-gray-50 tracking-wide">
+            EVENT SCHEDULE <span className="gradient-text">— March 24, 2026 </span>
+          </h3>
+          <h3 className="font-display text-xl font-bold text-center mb-8 text-gray-50  tracking-wide">
+            Venue <span className="gradient-text"> — TEC Auditorium</span>
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {[
@@ -227,15 +230,15 @@ export default function SymposiumSection() {
                   "9:00 AM – Registration & Check-in",
                   "9:30 AM – Inauguration Ceremony",
                   "10:30 AM – Paper Presentation",
-                  "11:30 AM – Mind Blitz",
-                  "12:00 PM – Technical Connection",
+                  "11:00 AM – Technical Connection",
+                  "12:00 PM – Mind Blitz",
                 ],
               },
               {
                 time: "Afternoon Session",
                 events: [
                   "1:00 PM – Lunch Time",
-                  "2:00 PM – Dumb Challanger",
+                  "2:00 PM – Dumb Charade",
                   "2:30 PM – Anagram",
                   "3:00 PM – Prize Distribution",
                 ],

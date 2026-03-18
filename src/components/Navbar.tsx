@@ -9,6 +9,7 @@ const navItems = [
   { label: "Symposium", href: "#symposium" },
   { label: "Events", href: "#events" },
   { label: "Co-ordinator's", href: "#faculty" },
+  { label: "Sponsors", href: "#sponsors" }, // ✅ ADD THIS
 ];
 
 export default function Navbar() {
@@ -25,7 +26,7 @@ export default function Navbar() {
     // 2. Intersection Observer for highlighting links
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -70% 0px", // Trigger when section is in the upper-middle of screen
+      rootMargin: "-40% 0px -40% 0px",// Trigger when section is in the upper-middle of screen
       threshold: 0,
     };
 

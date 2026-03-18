@@ -397,7 +397,7 @@ export default function HeroSection({
         </div>
 
         {/* Stats */}
-        <div className="mt-5 flex gap-10 md:gap-20 items-center justify-center">
+        {/* <div className="mt-5 flex gap-10 md:gap-20 items-center justify-center">
           <div className="text-center">
             <p className="text-white text-3xl md:text-5xl font-black italic">
               05
@@ -417,7 +417,7 @@ export default function HeroSection({
               Prizes
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.9)]" />

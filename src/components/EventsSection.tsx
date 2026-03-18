@@ -167,15 +167,16 @@ const events = [
       name: "Mr. R. Ramar Kalangiam",
       designation: "A/P of ECE",
     },
-    team: "1–3 members",
+    team: "1–2 members",
     rules: [
       "Participants must register in advance with the following details: Name, College, and Paper Title.",
-      "Each team can have 1–3 members, and at least one presenter must be present during the event.",
+      "Each team can have 1–2 members, and at least one presenter must be present during the event.",
       "The submitted paper must be original work. Plagiarism will lead to disqualification.",
-      "Participants must submit their PPT presentation before 21-03-2026 to xxxxxx@ggh.com.",
+      "Participants must submit their PPT presentation before 21-03-2026 to ecesparktron2k26@gmail.com",
       "Presentation time is 10–15 minutes including the Q&A session.",
       "A projector and system will be provided. Participants are advised not to use personal laptops.",
       "Evaluation will be based on content quality, presentation skills, and performance in the Q&A session.",
+      "The decision of the organizers will be final.",
     ],
   },
   {
@@ -187,12 +188,13 @@ const events = [
       name: "Ms. S. Selvanandhini",
       designation: "A/P of ECE",
     },
-    team: "2 members only",
+    team: "1 member only",
     rules: [
       "A mobile phone with internet access is required to participate in the quiz through the website.",
       "Only individual participation is allowed (team participation is not permitted).",
       "Participants must complete the quiz within the given time limit.",
       "Only one attempt is allowed per participant.",
+      "Each question must be answered within 1 minute. If not answered within the time limit, no marks will be awarded for that question.",
       "The decision of the organizers will be final.",
     ],
   },
@@ -210,11 +212,12 @@ const events = [
       "The event consists of a total of two rounds.",
       "Each team must have exactly 2 members.",
       "Teams that qualify in the first round will advance to the second round.",
+      "The decision of the organizers will be final.",
     ],
   },
   {
     icon: Drama,
-    name: "Dumb Challenger",
+    name: "Dumb Charade",
     category: "Non-Technical",
     desc: "A fun game where participants act out words without speaking while teammates guess the correct answer.",
     coordinator: {
@@ -249,6 +252,9 @@ const events = [
       {
         text: "The team that guesses the highest number of movie names wins.",
       },
+      {
+        text: "The decision of the organizers will be final.",
+      },
     ],
   },
   {
@@ -269,7 +275,7 @@ const events = [
       "Those who guesses the highest numbers of words wins.",
       "You can change the order of letters, but you cannot add or remove letters.",
       "The rearranged letters should usually form a valid word or phrase.",
-
+      "The decision of the organizers will be final.",
     ],
   },
 ];

@@ -164,7 +164,7 @@ const events = [
     category: "Technical",
     desc: "Showcase innovative ideas by presenting a technical paper to judges and audience.",
     coordinator: {
-      name: "Mr. R. Ramar Kalangiam",
+      name: "Mr. R. Ramar kalangiam",
       designation: "Asst. Professor of ECE",
     },
     team: "1–2 members",
@@ -204,7 +204,7 @@ const events = [
     category: "Technical",
     desc: "Decode the visual clues! Connect the images to guess the correct technical terms and showcase your lateral thinking",
     coordinator: {
-      name: "Ms. J. Pushpa Jaucline",
+      name: "Ms. J. Pushpa Jaculine",
       designation: "Asst. Professor of ECE",
     },
     team: "2 members only",
@@ -263,7 +263,7 @@ const events = [
     category: "Non-Technical",
     desc: "Participants rearrange scrambled letters to form meaningful words within a given time.",
     coordinator: {
-      name: "Ms. V. P. Veera Sivagami Pandi",
+      name: "Ms. A. V. Veera Sivagami Pandi",
       designation: "Asst. Professor of ECE",
     },
     team: "1 member only",

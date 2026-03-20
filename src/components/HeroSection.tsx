@@ -295,7 +295,7 @@ export default function HeroSection({
     >
       <ChipCircuitBackground />
 
-      <div className="relative  mt-5 md:mt-10 z-10 text-center px-4 w-full max-w-6xl flex flex-col items-center">
+      <div className="relative  mt-0 md:mt-0 z-10 text-center px-4 w-full max-w-6xl flex flex-col items-center">
         {/* College Header */}
         <div className="mb-5 md:mb-5">
           <h2 className="text-white text-[clamp(1rem,6vw,3rem)] font-black tracking-tight uppercase leading-tight">
